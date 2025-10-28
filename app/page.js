@@ -2,6 +2,7 @@ import Image from "next/image";
 import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import CreatePost from "@/components/CreatePost";
 
 export default async function Home() {
   const user = await stackServerApp.getUser();
@@ -31,20 +32,13 @@ export default async function Home() {
 
   const prismaUser = await handleUserPrisma();
 
-  console.log(user);
   return (
     <div>
-      <p>home</p>
-      {prismaUser && prismaUser?.avatar && (
-        <>
-          <Image
-            src={prismaUser?.avatar}
-            alt="User avatar"
-            width={100}
-            height={100}
-            className="rounded-full"
-          />
-        </>
+      {prismaUser && (
+        <div className="flex justify-center items-start">
+          <Image src={prismaUser.avata || null} />
+          <CreatePost />
+        </div>
       )}
     </div>
   );
