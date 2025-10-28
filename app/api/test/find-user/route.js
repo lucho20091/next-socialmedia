@@ -9,18 +9,14 @@ export async function GET(request) {
         where: {
           email: user.primaryEmail,
         },
-      });
-      const createPost = await prisma.post.create({
-        data: {
-          content: "this is my first post with image lmao",
-          authorId: existingUser.id,
-          imageUrl:
-            "https://res.cloudinary.com/dlabbnwux/image/upload/v1761622889/uploads/jglzzk9ilh72vwzrl7kv.gif",
+        include: {
+          writtenPosts: true,
         },
       });
+
       return NextResponse.json({
-        message: "post created successfully",
-        createPost,
+        message: "user founded successfully",
+        existingUser,
       });
     } else {
       return NextResponse.json({ message: "please log in" });

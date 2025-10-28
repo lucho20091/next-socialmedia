@@ -10,17 +10,17 @@ export async function GET(request) {
           email: user.primaryEmail,
         },
       });
-      const createPost = await prisma.post.create({
+      const updateUser = await prisma.user.update({
+        where: {
+          id: existingUser.id,
+        },
         data: {
-          content: "this is my first post with image lmao",
-          authorId: existingUser.id,
-          imageUrl:
-            "https://res.cloudinary.com/dlabbnwux/image/upload/v1761622889/uploads/jglzzk9ilh72vwzrl7kv.gif",
+          username: "my new name",
         },
       });
       return NextResponse.json({
-        message: "post created successfully",
-        createPost,
+        message: "user updated successfully",
+        updateUser,
       });
     } else {
       return NextResponse.json({ message: "please log in" });

@@ -28,9 +28,10 @@ export default async function Home() {
       console.log(error);
     }
   }
-  console.log(user);
+
   const prismaUser = await handleUserPrisma();
-  console.log(prismaUser);
+
+  console.log(user);
   return (
     <div>
       <p>home</p>

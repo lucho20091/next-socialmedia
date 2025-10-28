@@ -10,17 +10,20 @@ export async function GET(request) {
           email: user.primaryEmail,
         },
       });
-      const createPost = await prisma.post.create({
-        data: {
-          content: "this is my first post with image lmao",
-          authorId: existingUser.id,
-          imageUrl:
-            "https://res.cloudinary.com/dlabbnwux/image/upload/v1761622889/uploads/jglzzk9ilh72vwzrl7kv.gif",
+      const allPosts = await prisma.post.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 5,
+        include: {
+          author: true,
+          likedBy: true,
+          comments: true,
         },
       });
       return NextResponse.json({
-        message: "post created successfully",
-        createPost,
+        message: "posts readed successfully",
+        allPosts,
       });
     } else {
       return NextResponse.json({ message: "please log in" });
