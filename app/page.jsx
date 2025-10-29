@@ -52,7 +52,7 @@ export default async function Home() {
   console.log(getAllPosts);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[calc(100vh-68px)]">
       {prismaUser && (
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">

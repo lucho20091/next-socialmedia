@@ -9,7 +9,7 @@ export default async function page() {
     redirect("/test");
   }
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[calc(100vh-68px)] flex items-center justify-center">
       <div>
         <SignIn />
       </div>
