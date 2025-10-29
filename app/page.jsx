@@ -49,6 +49,26 @@ export default async function Home() {
   const prismaUser = await handleUserPrisma();
   const getAllPosts = await readMainPosts();
 
+  if (!prismaUser) {
+    return (
+      <div className="min-h-[calc(100svh-68px)] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            To access all posts, please sign in
+          </h1>
+          <p className="mt-2 text-gray-600">
+            Sign in to create posts, like, and comment.
+          </p>
+          <Link
+            href="/sign-in"
+            className="inline-block mt-4 px-6 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+          >
+            Go to Sign In
+          </Link>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-[calc(100svh-68px)]">
       {prismaUser && (
