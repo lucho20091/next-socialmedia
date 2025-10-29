@@ -67,7 +67,7 @@ export default async function Home() {
           </div>
         </div>
       )}
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto py-6">
         {getAllPosts &&
           getAllPosts.length > 0 &&
           getAllPosts.map((item) => (
@@ -113,21 +113,24 @@ export default async function Home() {
               </div>
               {/* post content */}
               <div className="ml-13 mb-3 mt-[-16px]">
-                <p className="text-gray-900 text-lg leading-relaxed">
+                <p className="text-gray-900 text-lg leading-tight">
                   {item.content}
                 </p>
               </div>
               {/* post image */}
               {item.imageUrl && (
-                <div className="ml-13 mb-3 rounded-2xl bg-black">
+                <Link
+                  href={`/post/${item.id}`}
+                  className="block ml-13 mb-4 rounded-2xl bg-black"
+                >
                   <Image
                     src={item.imageUrl}
                     width={500}
-                    height={300}
+                    height={500}
                     alt={`Image posted by ${item.author.username}`}
                     className="w-full h-auto object-contain"
                   />
-                </div>
+                </Link>
               )}
               {/* post actions */}
               <div className="ml-13 grid grid-cols-3">
@@ -138,17 +141,15 @@ export default async function Home() {
                     userId={prismaUser?.id || null}
                   />
                 </div>
-                <div className="flex items-center justify-start gap-2 sm:gap-4 ">
-                  <Link href={`/post/${item.id}`} className="cursor-pointer">
-                    <CgComment size="20px" />
-                  </Link>{" "}
-                  <Link href={`/post/${item.id}`} className="">
-                    <span>{item._count.comments} </span>
-                    <span className="hidden sm:inline">
-                      {item._count.comments === 1 ? "comment" : "comments"}
-                    </span>
-                  </Link>
-                </div>
+                <Link
+                  href={`/post/${item.id}`}
+                  className="flex items-center justify-start gap-2 sm:gap-4 "
+                >
+                  <CgComment size="20px" /> <span>{item._count.comments} </span>
+                  <span className="hidden sm:inline">
+                    {item._count.comments === 1 ? "comment" : "comments"}
+                  </span>
+                </Link>
                 <div className="flex items-center justify-end gap-4 ">
                   <SharePostPage id={item.id} />
                 </div>
@@ -166,7 +167,7 @@ export default async function Home() {
                 {item.comments.length > 0 &&
                   item.comments.map((item) => (
                     <div key={item.id}>
-                      <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100">
+                      <div className="flex items-start space-x-3 px-2  pt-2 rounded-lg hover:bg-gray-100">
                         <Link href={`/profile/${item.author.id}`}>
                           <Image
                             src={item.author.avatar || "/default-profile.jpg"}
@@ -208,25 +209,27 @@ export default async function Home() {
                   ))}
               </div>
               {/* comment form */}
-              <div className="pt-3">
-                {prismaUser && (
-                  <div className="flex items-start space-x-3">
-                    <Image
-                      src={prismaUser?.avatar || "/default-profile.jpg"}
-                      width={40}
-                      height={40}
-                      alt={`${prismaUser.username} avatar`}
-                      className="rounded-full border-2 border-blue-500 shadow-xl"
-                    />
+              {prismaUser && (
+                <>
+                  <div className="pt-3">
+                    <div className="flex items-start space-x-3">
+                      <Image
+                        src={prismaUser?.avatar || "/default-profile.jpg"}
+                        width={40}
+                        height={40}
+                        alt={`${prismaUser.username} avatar`}
+                        className="rounded-full border-2 border-blue-500 shadow-xl"
+                      />
 
-                    <div className="flex-1">
-                      <div className="bg-gray-100 rounded-md p-3">
-                        <CreateComment postId={item.id} />
+                      <div className="flex-1">
+                        <div className="bg-gray-100 rounded-md p-3">
+                          <CreateComment postId={item.id} />
+                        </div>
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
+                </>
+              )}
             </div>
           ))}
       </div>

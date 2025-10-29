@@ -27,9 +27,9 @@ export default async function page({ params }) {
   }
   return (
     <div className="min-h-[calc(100svh-68px)]">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto py-6">
         {getPost && (
-          <div className="px-4 py-6 sm:p-8 pb-16">
+          <div className="p-4 sm:p-8 pb-16">
             {/* post header */}
             <div className="flex items-start space-x-3">
               <Link href={`/profile/${getPost.author.id}`}>
@@ -112,7 +112,7 @@ export default async function page({ params }) {
               {getPost.comments.length > 0 &&
                 getPost.comments.map((item) => (
                   <div key={item.id}>
-                    <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100">
+                    <div className="flex items-start space-x-3 px-2 pt-2 rounded-lg hover:bg-gray-100">
                       <Link href={`/profile/${item.author.id}`}>
                         <Image
                           src={item.author.avatar || "/default-profile.jpg"}

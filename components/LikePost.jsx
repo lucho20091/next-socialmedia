@@ -20,7 +20,7 @@ export default function LikePost({ postId, currentLikes, userId }) {
       }
     } else {
       if (!userId) {
-        toast.error("you must be sign in first to like posts");
+        toast.error("you must sign in to like posts");
         return;
       }
       const response = await likePost(postId);
