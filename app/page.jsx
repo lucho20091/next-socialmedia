@@ -3,11 +3,15 @@ import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CreatePost from "@/components/CreatePost";
-import { readMainPosts, deletePost } from "@/lib/actions/post";
+import { readMainPosts } from "@/lib/actions/post";
+import { getUserAvatarById } from "@/lib/actions/user";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { BiLike } from "react-icons/bi";
+import { CgComment } from "react-icons/cg";
+import { CiShare2 } from "react-icons/ci";
+import CreateComment from "@/components/CreateComment";
 
-import { AiOutlineDelete } from "react-icons/ai";
 import UpdatePostPage from "@/components/updatePost";
 import DeletePostPage from "@/components/DeletePost";
 
@@ -43,7 +47,12 @@ export default async function Home() {
   }
   const prismaUser = await handleUserPrisma();
   const getAllPosts = await readMainPosts();
+
   console.log(getAllPosts);
+  async function createCommentForm(formData) {
+    const content = formData.get("content");
+    const response = await createComment(content);
+  }
   return (
     <div className="min-h-screen">
       {prismaUser && (
@@ -63,7 +72,8 @@ export default async function Home() {
         </div>
       )}
       <div className="max-w-2xl mx-auto">
-        {getAllPosts.length > 0 &&
+        {getAllPosts &&
+          getAllPosts.length > 0 &&
           getAllPosts.map((item) => (
             <div
               key={item.id}
@@ -124,223 +134,91 @@ export default async function Home() {
                 </div>
               )}
               {/* post actions */}
+              <div className="ml-13 grid grid-cols-3">
+                <div className="flex items-center justify-start gap-4 ">
+                  <button className="cursor-pointer border-1 border-black">
+                    <BiLike size="20px" />
+                  </button>
+                  {item.likedBy.length > 0 && (
+                    <span>
+                      {item.likedBy.length}{" "}
+                      {item.likedBy.length === 1 ? "like" : "likes"}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center justify-start gap-4 ">
+                  <Link
+                    href={`/post/${item.id}`}
+                    className="cursor-pointer border-1 border-black"
+                  >
+                    <CgComment size="20px" />
+                  </Link>{" "}
+                  <Link href={`/post/${item.id}`}>
+                    {item.comments.length}{" "}
+                    {item.comments.length === 1 ? "comment" : "comments"}
+                  </Link>
+                </div>
+                <div className="flex items-center justify-end gap-4 ">
+                  <button className="cursor-pointer border-1 border-black">
+                    <CiShare2 size="20px" />
+                  </button>{" "}
+                  <span>Share</span>
+                </div>
+              </div>
+              {/* comment section */}
+              <div className="ml-13 mt-4 space-y-3">
+                {item.comments.length > 0 &&
+                  item.comments.map((item) => (
+                    <div key={item.id}>
+                      <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100">
+                        <Link href={`/profile/${item.author.id}`}>
+                          <Image
+                            src={item.author.avatar || "/default-profile.jpg"}
+                            width={40}
+                            height={40}
+                            alt="Profile"
+                            className="rounded-full border-2 border-blue-500 shadow-xl"
+                          />
+                        </Link>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <Link
+                              href={`/profile/${item.author.id}`}
+                              className="font-semibold text-gray-900"
+                            >
+                              {item.author.username}
+                            </Link>
+                            <span className="text-gray-500">
+                              {formatDate(item.updatedAt)}
+                            </span>
+                          </div>
+                          <p className="text-gray-700 mt-1">{item.content}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              {/* comment form */}
+              <div className="pt-3">
+                <div className="flex items-start space-x-3">
+                  <Image
+                    src={prismaUser.avatar || "/default-profile.jpg"}
+                    width={40}
+                    height={40}
+                    alt={`${prismaUser.username} avatar`}
+                    className="rounded-full border-2 border-blue-500 shadow-xl"
+                  />
+
+                  <div className="flex-1">
+                    <div className="bg-gray-100 rounded-md p-3">
+                      <CreateComment postId={item.id} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
       </div>
     </div>
   );
 }
-//
-// return (
-
-//     <div className="max-w-2xl mx-auto">
-//       {getAllPosts.length > 0 &&
-//         getAllPosts.map((item) => (
-//           <div
-//             key={item.id}
-//             className="border-b border-gray-200 p-4 hover:bg-gray-50 transition-colors"
-//           >
-//             {/* Post Header */}
-//             <div className="flex items-center space-x-3 mb-3">
-//               {item.author.avatar ? (
-//                 <Image
-//                   src={item.author.avatar}
-//                   width={40}
-//                   height={40}
-//                   alt={`${item.author.username} avatar`}
-//                   className="rounded-full"
-//                 />
-//               ) : (
-//                 <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-//                   <span className="text-gray-600 font-semibold text-sm">
-//                     {item.author.username.charAt(0).toUpperCase()}
-//                   </span>
-//                 </div>
-//               )}
-//               <div className="flex-1">
-//                 <div className="flex items-center space-x-2">
-//                   <span className="font-bold text-gray-900">
-//                     {item.author.username}
-//                   </span>
-//                   <span className="text-gray-500 text-sm">2h</span>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Post Content */}
-//             <div className="ml-13 mb-3">
-//               <p className="text-gray-900 text-lg leading-relaxed">
-//                 {item.content}
-//               </p>
-//             </div>
-
-//             {/* Post Image */}
-//             {item.imageUrl && (
-//               <div className="ml-13 mb-3 rounded-2xl overflow-hidden">
-//                 <Image
-//                   src={item.imageUrl}
-//                   width={500}
-//                   height={300}
-//                   alt={`Image posted by ${item.author.username}`}
-//                   className="w-full h-auto object-cover"
-//                 />
-//               </div>
-//             )}
-
-//             {/* Post Actions */}
-//             <div className="ml-13 flex items-center justify-between max-w-md">
-//               <button className="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors">
-//                 <svg
-//                   className="w-5 h-5"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth={2}
-//                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-//                   />
-//                 </svg>
-//                 <span className="text-sm">12</span>
-//               </button>
-
-//               <button className="flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors">
-//                 <svg
-//                   className="w-5 h-5"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth={2}
-//                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-//                   />
-//                 </svg>
-//                 <span className="text-sm">24</span>
-//               </button>
-
-//               <button className="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors">
-//                 <svg
-//                   className="w-5 h-5"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth={2}
-//                     d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-//                   />
-//                 </svg>
-//               </button>
-//             </div>
-
-//             {/* Comments Section */}
-//             <div className="ml-13 mt-4 space-y-3">
-//               {/* Last 2 Comments */}
-//               <div className="space-y-2">
-//                 <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100">
-//                   <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-//                     <span className="text-gray-600 font-semibold text-xs">
-//                       U
-//                     </span>
-//                   </div>
-//                   <div className="flex-1">
-//                     <div className="flex items-center space-x-2">
-//                       <span className="font-semibold text-gray-900 text-sm">
-//                         user1
-//                       </span>
-//                       <span className="text-gray-500 text-xs">1h</span>
-//                     </div>
-//                     <p className="text-gray-700 text-sm mt-1">
-//                       Great post! Love this content.
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100">
-//                   <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-//                     <span className="text-gray-600 font-semibold text-xs">
-//                       U
-//                     </span>
-//                   </div>
-//                   <div className="flex-1">
-//                     <div className="flex items-center space-x-2">
-//                       <span className="font-semibold text-gray-900 text-sm">
-//                         user2
-//                       </span>
-//                       <span className="text-gray-500 text-xs">30m</span>
-//                     </div>
-//                     <p className="text-gray-700 text-sm mt-1">
-//                       Amazing! Thanks for sharing.
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Comment Form */}
-//               <div className="border-t border-gray-200 pt-3">
-//                 <div className="flex items-start space-x-3">
-//                   {prismaUser?.avatar ? (
-//                     <Image
-//                       src={prismaUser.avatar}
-//                       width={32}
-//                       height={32}
-//                       alt="Your avatar"
-//                       className="rounded-full"
-//                     />
-//                   ) : (
-//                     <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-//                       <span className="text-gray-600 font-semibold text-xs">
-//                         {prismaUser?.username?.charAt(0).toUpperCase() || "U"}
-//                       </span>
-//                     </div>
-//                   )}
-
-//                   <div className="flex-1">
-//                     <div className="bg-gray-100 rounded-2xl p-3">
-//                       <div className="flex items-center space-x-2 mb-2">
-//                         <input
-//                           type="text"
-//                           placeholder="Add a comment..."
-//                           className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none text-sm"
-//                         />
-//                         <button className="text-gray-500 hover:text-gray-700 transition-colors">
-//                           <svg
-//                             className="w-4 h-4"
-//                             fill="none"
-//                             stroke="currentColor"
-//                             viewBox="0 0 24 24"
-//                           >
-//                             <path
-//                               strokeLinecap="round"
-//                               strokeLinejoin="round"
-//                               strokeWidth={2}
-//                               d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-//                             />
-//                           </svg>
-//                         </button>
-//                       </div>
-
-//                       <div className="flex items-center justify-between">
-//                         <span className="text-gray-500 text-xs">Image</span>
-//                         <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded-full text-xs transition-colors">
-//                           Reply
-//                         </button>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//     </div>
-//   </div>
-// );
-//
