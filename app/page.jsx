@@ -49,8 +49,6 @@ export default async function Home() {
   const prismaUser = await handleUserPrisma();
   const getAllPosts = await readMainPosts();
 
-  console.log(getAllPosts);
-
   return (
     <div className="min-h-[calc(100vh-68px)]">
       {prismaUser && (
