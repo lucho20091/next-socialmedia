@@ -7,15 +7,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 export default function DeletePostPage({ id }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -23,6 +23,7 @@ export default function DeletePostPage({ id }) {
       if (result.success) {
         toast.success("deleted post successfully");
         setOpen(false);
+        router.back();
       }
     } catch (e) {
       toast.error("failed to delete post");
