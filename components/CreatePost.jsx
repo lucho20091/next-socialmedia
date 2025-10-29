@@ -63,10 +63,11 @@ export default function CreatePostPage() {
         console.log(result);
         router.refresh();
       } else {
-        toast.error("failed to create tweet");
+        toast.error("failed to create post");
       }
     } catch (e) {
       console.log(e);
+      toast.error("failed to create post");
     }
   }
   return (
