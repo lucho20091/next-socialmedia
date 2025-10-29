@@ -74,7 +74,7 @@ export default async function Home() {
       {prismaUser && (
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">
-            <div className="flex items-start p-4 space-x-3">
+            <div className="flex items-start p-4 sm:p-8 space-x-3">
               <Image
                 src={prismaUser.avatar || "/default-profile.jpg"}
                 width={40}
@@ -107,13 +107,13 @@ export default async function Home() {
                   />
                 </Link>
                 <div className="flex-1">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-wrap items-center space-x-2">
                     <Link href={`/profile/${item.author.id}`}>
                       <span className="font-bold text-gray-900">
                         {item.author.username}
                       </span>
                     </Link>
-                    <span className="text-gray-500">
+                    <span className="text-gray-500 text-xs sm:text-base">
                       {formatDate(item.updatedAt)}
                     </span>
                   </div>

@@ -42,13 +42,13 @@ export default async function page({ params }) {
                 />
               </Link>
               <div className="flex-1">
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-wrap items-center space-x-2">
                   <Link href={`/profile/${getPost.author.id}`}>
                     <span className="font-bold text-gray-900">
                       {getPost.author.username}
                     </span>
                   </Link>
-                  <span className="text-gray-500">
+                  <span className="text-gray-500 text-xs sm:text-base">
                     {formatDate(getPost.updatedAt)}
                   </span>
                 </div>
