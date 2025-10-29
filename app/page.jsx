@@ -50,7 +50,7 @@ export default async function Home() {
   const getAllPosts = await readMainPosts();
 
   return (
-    <div className="min-h-[calc(100vh-68px)]">
+    <div className="min-h-[calc(100svh-68px)]">
       {prismaUser && (
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">

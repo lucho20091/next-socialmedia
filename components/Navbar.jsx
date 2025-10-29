@@ -15,7 +15,8 @@ export default async function Navbar() {
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md p-4">
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="text-2xl font-bold">
-          SocialMedia
+          Social
+          <span className="text-blue-500">Media</span>
         </Link>
 
         {user ? (

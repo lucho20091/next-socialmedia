@@ -26,7 +26,7 @@ export default async function page({ params }) {
     return dateFns.replace(/^about\s/, "");
   }
   return (
-    <div className="min-h-[calc(100vh-68px)]">
+    <div className="min-h-[calc(100svh-68px)]">
       <div className="max-w-2xl mx-auto">
         {getPost && (
           <div className="p-4 sm:p-8 pb-16">

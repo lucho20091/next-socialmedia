@@ -1,6 +1,9 @@
 import { stackServerApp } from "@/stack/server";
 import { getUserByEmail, getFullUserById } from "@/lib/actions/user";
+import { IoSettings } from "react-icons/io5";
+
 import ProfileTabs from "@/components/ProfileTabs";
+import Link from "next/link";
 export default async function page({ params }) {
   const { id } = await params;
   const user = await stackServerApp.getUser();
@@ -11,7 +14,7 @@ export default async function page({ params }) {
   const profileUser = await getFullUserById(id);
   console.log(profileUser);
   return (
-    <div className="min-h-[calc(100vh-68px)]">
+    <div className="min-h-[calc(100svh-68px)]">
       <div className="max-w-3xl mx-auto p-4 sm:p-6">
         <div className="bg-white rounded-xl shadow-md p-6 flex items-start gap-4">
           <img
@@ -48,6 +51,13 @@ export default async function page({ params }) {
                 comments
               </span>
             </div>
+          </div>
+          <div>
+            {prismaUser && profileUser.id === prismaUser.id && (
+              <Link href="/settings">
+                <IoSettings size="40px" />
+              </Link>
+            )}
           </div>
         </div>
         <ProfileTabs
