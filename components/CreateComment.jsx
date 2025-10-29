@@ -4,8 +4,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 export default function CommentPage({ postId }) {
   const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const result = await createComment(content, postId);
       if (result.success) {
@@ -15,20 +17,28 @@ export default function CommentPage({ postId }) {
     } catch (e) {
       console.log(e);
       toast.error("failed to create post");
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
-    <form className="flex items-center space-x-2 mb-2" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-wrap items-center space-x-2 mb-2"
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         placeholder="Add a comment..."
-        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none"
+        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none min-w-[150px]"
         name="content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded-sm transition-colors">
-        Reply
+      <button
+        disabled={isLoading}
+        className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors ml-auto"
+      >
+        {isLoading ? "Replying..." : "Reply"}
       </button>
     </form>
   );

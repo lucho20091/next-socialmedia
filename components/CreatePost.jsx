@@ -8,6 +8,7 @@ export default function CreatePostPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [content, setContent] = useState("");
   const [selectedPreview, setSelectedPreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   function handleFileUpload(e) {
     const file = e.target.files[0];
@@ -28,6 +29,7 @@ export default function CreatePostPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       let imageUrl;
       if (selectedFile) {
@@ -60,14 +62,14 @@ export default function CreatePostPage() {
         setSelectedFile(null);
         setSelectedPreview(null);
         toast.success("created post successfully");
-        console.log(result);
-        router.refresh();
       } else {
         toast.error("failed to create post");
       }
     } catch (e) {
       console.log(e);
       toast.error("failed to create post");
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
@@ -109,10 +111,10 @@ export default function CreatePostPage() {
 
             <button
               type="submit"
-              disabled={!content.trim()}
+              disabled={!content.trim() || isLoading}
               className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors"
             >
-              Post
+              {isLoading ? "Posting..." : "Post"}
             </button>
           </div>
         </div>

@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { stackServerApp } from "@/stack/server";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CreatePost from "@/components/CreatePost";
 import { readMainPosts } from "@/lib/actions/post";
-import { getUserAvatarById } from "@/lib/actions/user";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { BiLike } from "react-icons/bi";
+
 import { CgComment } from "react-icons/cg";
 import { CiShare2 } from "react-icons/ci";
 import CreateComment from "@/components/CreateComment";
+import DeleteCommentPage from "@/components/DeleteComment";
+import UpdateCommentPage from "@/components/UpdateComment";
+import LikePost from "@/components/LikePost";
 
 import UpdatePostPage from "@/components/updatePost";
 import DeletePostPage from "@/components/DeletePost";
@@ -49,10 +50,7 @@ export default async function Home() {
   const getAllPosts = await readMainPosts();
 
   console.log(getAllPosts);
-  async function createCommentForm(formData) {
-    const content = formData.get("content");
-    const response = await createComment(content);
-  }
+
   return (
     <div className="min-h-screen">
       {prismaUser && (
@@ -134,35 +132,30 @@ export default async function Home() {
                 </div>
               )}
               {/* post actions */}
-              <div className="ml-13 grid grid-cols-3">
-                <div className="flex items-center justify-start gap-4 ">
-                  <button className="cursor-pointer border-1 border-black">
-                    <BiLike size="20px" />
-                  </button>
-                  {item.likedBy.length > 0 && (
-                    <span>
-                      {item.likedBy.length}{" "}
-                      {item.likedBy.length === 1 ? "like" : "likes"}
-                    </span>
-                  )}
+              <div className="ml-13 grid grid-cols-[1fr_1.5fr_0.5fr] sm:grid-cols-3">
+                <div className="flex items-center justify-start gap-2 sm:gap-4 ">
+                  <LikePost
+                    postId={item.id}
+                    currentLikes={item.likedBy}
+                    userId={prismaUser.id}
+                  />
                 </div>
-                <div className="flex items-center justify-start gap-4 ">
-                  <Link
-                    href={`/post/${item.id}`}
-                    className="cursor-pointer border-1 border-black"
-                  >
+                <div className="flex items-center justify-start gap-2 sm:gap-4 ">
+                  <Link href={`/post/${item.id}`} className="cursor-pointer">
                     <CgComment size="20px" />
                   </Link>{" "}
-                  <Link href={`/post/${item.id}`}>
-                    {item._count.comments}{" "}
-                    {item._count.comments === 1 ? "comment" : "comments"}
+                  <Link href={`/post/${item.id}`} className="">
+                    <span>{item._count.comments} </span>
+                    <span>
+                      {item._count.comments === 1 ? "comment" : "comments"}
+                    </span>
                   </Link>
                 </div>
                 <div className="flex items-center justify-end gap-4 ">
-                  <button className="cursor-pointer border-1 border-black">
+                  <button className="cursor-pointer">
                     <CiShare2 size="20px" />
                   </button>{" "}
-                  <span>Share</span>
+                  <span className="hidden sm:inline">Share</span>
                 </div>
               </div>
               {/* comment section */}
@@ -202,6 +195,19 @@ export default async function Home() {
                           </div>
                           <p className="text-gray-700 mt-1">{item.content}</p>
                         </div>
+                        {item.author.id === prismaUser.id && (
+                          <div className="ml-auto flex gap-2">
+                            <UpdateCommentPage
+                              id={item.id}
+                              text={item.content}
+                              imageUrl={
+                                prismaUser.avatar || "/default-profile.jpg"
+                              }
+                              username={prismaUser.username}
+                            />
+                            <DeleteCommentPage commentId={item.id} />
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
