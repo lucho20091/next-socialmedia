@@ -19,7 +19,7 @@ export default async function Navbar() {
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="text-2xl font-bold">
           Social
-          <span className="text-blue-500">Media</span>
+          <span className="text-blue-500 font-bold">Media</span>
         </Link>
 
         {user ? (

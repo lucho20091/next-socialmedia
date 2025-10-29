@@ -29,7 +29,7 @@ export default async function page({ params }) {
     <div className="min-h-[calc(100svh-68px)]">
       <div className="max-w-2xl mx-auto">
         {getPost && (
-          <div className="p-4 sm:p-8 pb-16">
+          <div className="px-4 py-6 sm:p-8 pb-16">
             {/* post header */}
             <div className="flex items-start space-x-3">
               <Link href={`/profile/${getPost.author.id}`}>

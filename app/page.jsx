@@ -74,7 +74,7 @@ export default async function Home() {
       {prismaUser && (
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">
-            <div className="flex items-start p-4 sm:p-8 space-x-3">
+            <div className="flex items-start px-4 py-6 sm:p-8 space-x-3">
               <Image
                 src={prismaUser.avatar || "/default-profile.jpg"}
                 width={40}
