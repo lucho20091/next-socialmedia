@@ -154,8 +154,8 @@ export default async function Home() {
                     <CgComment size="20px" />
                   </Link>{" "}
                   <Link href={`/post/${item.id}`}>
-                    {item.comments.length}{" "}
-                    {item.comments.length === 1 ? "comment" : "comments"}
+                    {item._count.comments}{" "}
+                    {item._count.comments === 1 ? "comment" : "comments"}
                   </Link>
                 </div>
                 <div className="flex items-center justify-end gap-4 ">
@@ -167,6 +167,14 @@ export default async function Home() {
               </div>
               {/* comment section */}
               <div className="ml-13 mt-4 space-y-3">
+                {item._count.comments > 2 && (
+                  <Link
+                    className="text-blue-800 font-semibold"
+                    href={`/post/${item.id}`}
+                  >
+                    View more comments
+                  </Link>
+                )}
                 {item.comments.length > 0 &&
                   item.comments.map((item) => (
                     <div key={item.id}>
