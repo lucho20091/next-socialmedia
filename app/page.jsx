@@ -49,26 +49,6 @@ export default async function Home() {
   const prismaUser = await handleUserPrisma();
   const getAllPosts = await readMainPosts();
 
-  if (!prismaUser) {
-    return (
-      <div className="min-h-[calc(100svh-68px)] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-            To access all posts, please sign in
-          </h1>
-          <p className="mt-2 text-gray-600">
-            Sign in to create posts, like, and comment.
-          </p>
-          <Link
-            href="/sign-in"
-            className="inline-block mt-4 px-6 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
-          >
-            Go to Sign In
-          </Link>
-        </div>
-      </div>
-    );
-  }
   return (
     <div className="min-h-[calc(100svh-68px)]">
       {prismaUser && (
@@ -118,7 +98,7 @@ export default async function Home() {
                     </span>
                   </div>
                 </div>
-                {item.author.id === prismaUser.id && (
+                {prismaUser && item.author.id === prismaUser.id && (
                   <div className="ml-auto flex gap-2">
                     <UpdatePostPage
                       id={item.id}
@@ -155,7 +135,7 @@ export default async function Home() {
                   <LikePost
                     postId={item.id}
                     currentLikes={item.likedBy}
-                    userId={prismaUser.id}
+                    userId={prismaUser?.id || null}
                   />
                 </div>
                 <div className="flex items-center justify-start gap-2 sm:gap-4 ">
@@ -210,7 +190,7 @@ export default async function Home() {
                           </div>
                           <p className="text-gray-700 mt-1">{item.content}</p>
                         </div>
-                        {item.author.id === prismaUser.id && (
+                        {prismaUser && item.author.id === prismaUser.id && (
                           <div className="ml-auto flex gap-2">
                             <UpdateCommentPage
                               id={item.id}
@@ -229,21 +209,23 @@ export default async function Home() {
               </div>
               {/* comment form */}
               <div className="pt-3">
-                <div className="flex items-start space-x-3">
-                  <Image
-                    src={prismaUser.avatar || "/default-profile.jpg"}
-                    width={40}
-                    height={40}
-                    alt={`${prismaUser.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl"
-                  />
+                {prismaUser && (
+                  <div className="flex items-start space-x-3">
+                    <Image
+                      src={prismaUser?.avatar || "/default-profile.jpg"}
+                      width={40}
+                      height={40}
+                      alt={`${prismaUser.username} avatar`}
+                      className="rounded-full border-2 border-blue-500 shadow-xl"
+                    />
 
-                  <div className="flex-1">
-                    <div className="bg-gray-100 rounded-md p-3">
-                      <CreateComment postId={item.id} />
+                    <div className="flex-1">
+                      <div className="bg-gray-100 rounded-md p-3">
+                        <CreateComment postId={item.id} />
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           ))}
