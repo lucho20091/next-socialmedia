@@ -30,7 +30,6 @@ export default async function page({ params }) {
             <h1 className="text-2xl font-bold text-gray-900">
               {profileUser?.username || "User"}
             </h1>
-            <p className="text-gray-500 break-all">{profileUser?.email}</p>
             <div className="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
               <span>
                 <span className="font-semibold">
