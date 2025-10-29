@@ -1,5 +1,7 @@
 "use client";
 import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
+
 import { likePost, dislikePost } from "@/lib/actions/post";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -17,6 +19,10 @@ export default function LikePost({ postId, currentLikes, userId }) {
         toast.error("failed to dislike post");
       }
     } else {
+      if (!userId) {
+        toast.error("you must be sign in first to like posts");
+        return;
+      }
       const response = await likePost(postId);
       if (response.success) {
         toast.success("liked post successfully");
@@ -29,10 +35,11 @@ export default function LikePost({ postId, currentLikes, userId }) {
   return (
     <>
       <button className="cursor-pointer" onClick={handleLike}>
-        <BiLike
-          size="20px"
-          className={userHasLiked ? "text-blue-500" : "text-gray-500"}
-        />
+        {userHasLiked ? (
+          <BiSolidLike size="20px" className="text-blue-500" />
+        ) : (
+          <BiLike size="20px" />
+        )}
       </button>
       {likes.length > 0 && (
         <span

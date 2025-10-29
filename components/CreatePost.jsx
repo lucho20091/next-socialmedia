@@ -35,7 +35,6 @@ export default function CreatePostPage() {
       if (selectedFile) {
         const sigRes = await fetch("/api/signature");
         const { timestamp, signature } = await sigRes.json();
-        console.log(timestamp, signature);
         const formData = new FormData();
         formData.append("file", selectedFile);
         formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
@@ -50,7 +49,7 @@ export default function CreatePostPage() {
           }
         );
         if (!response.ok) {
-          console.log("error");
+          toast.error("unable to add image");
         }
         const data = await response.json();
         imageUrl = data.secure_url;
@@ -66,7 +65,6 @@ export default function CreatePostPage() {
         toast.error("failed to create post");
       }
     } catch (e) {
-      console.log(e);
       toast.error("failed to create post");
     } finally {
       setIsLoading(false);

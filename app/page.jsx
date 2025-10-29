@@ -7,7 +7,7 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 
 import { CgComment } from "react-icons/cg";
-import { CiShare2 } from "react-icons/ci";
+import SharePostPage from "@/components/SharePost";
 import CreateComment from "@/components/CreateComment";
 import DeleteCommentPage from "@/components/DeleteComment";
 import UpdateCommentPage from "@/components/UpdateComment";
@@ -130,7 +130,7 @@ export default async function Home() {
                 </div>
               )}
               {/* post actions */}
-              <div className="ml-13 grid grid-cols-[1fr_1.5fr_0.5fr] sm:grid-cols-3">
+              <div className="ml-13 grid grid-cols-3">
                 <div className="flex items-center justify-start gap-2 sm:gap-4 ">
                   <LikePost
                     postId={item.id}
@@ -144,16 +144,13 @@ export default async function Home() {
                   </Link>{" "}
                   <Link href={`/post/${item.id}`} className="">
                     <span>{item._count.comments} </span>
-                    <span>
+                    <span className="hidden sm:inline">
                       {item._count.comments === 1 ? "comment" : "comments"}
                     </span>
                   </Link>
                 </div>
                 <div className="flex items-center justify-end gap-4 ">
-                  <button className="cursor-pointer">
-                    <CiShare2 size="20px" />
-                  </button>{" "}
-                  <span className="hidden sm:inline">Share</span>
+                  <SharePostPage id={item.id} />
                 </div>
               </div>
               {/* comment section */}
@@ -180,14 +177,14 @@ export default async function Home() {
                           />
                         </Link>
                         <div className="flex-1">
-                          <div className="flex items-center space-x-2">
+                          <div className="flex flex-wrap items-center space-x-2">
                             <Link
                               href={`/profile/${item.author.id}`}
                               className="font-semibold text-gray-900"
                             >
                               {item.author.username}
                             </Link>
-                            <span className="text-gray-500">
+                            <span className="text-gray-500 text-xs sm:text-base">
                               {formatDate(item.updatedAt)}
                             </span>
                           </div>

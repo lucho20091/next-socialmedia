@@ -26,7 +26,6 @@ export default function updatePostPage({ id, text, imageUrl, username }) {
     e.preventDefault();
     try {
       const result = await updatePost(id, content.trim());
-      console.log(result);
       if (result.success) {
         toast.success("updated post successfully");
         setOpen(false);
@@ -34,7 +33,6 @@ export default function updatePostPage({ id, text, imageUrl, username }) {
         toast.error("failed to update post");
       }
     } catch (e) {
-      console.log(e);
       toast.error("failed to update post");
     }
   }
@@ -85,7 +83,3 @@ export default function updatePostPage({ id, text, imageUrl, username }) {
     </Dialog>
   );
 }
-
-// {/* <button className="cursor-pointer border-1 border-black">
-// <BiEdit size="20px" />
-// </button> */}

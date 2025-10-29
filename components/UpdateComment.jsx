@@ -26,7 +26,6 @@ export default function UpdateCommentPage({ id, text, imageUrl, username }) {
     e.preventDefault();
     try {
       const result = await updateComment(id, content.trim());
-      console.log(result);
       if (result.success) {
         toast.success("updated comment successfully");
         setOpen(false);
@@ -34,7 +33,6 @@ export default function UpdateCommentPage({ id, text, imageUrl, username }) {
         toast.error("failed to update comment");
       }
     } catch (e) {
-      console.log(e);
       toast.error("failed to update comment");
     }
   }
