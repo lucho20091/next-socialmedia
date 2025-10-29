@@ -11,6 +11,9 @@ export default async function Navbar() {
   if (user) {
     prismaUser = await getUserByEmail(user?.primaryEmail);
   }
+  const avatarSrc =
+    prismaUser?.avatar || user?.profileImageUrl || "/default-profile.jpg";
+  const profileHref = prismaUser ? `/profile/${prismaUser.id}` : "/settings";
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md p-4">
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
@@ -21,15 +24,16 @@ export default async function Navbar() {
 
         {user ? (
           <div className="flex items-center gap-4">
-            <Link href={`/profile/${prismaUser.id}`}>
+            <Link href={profileHref}>
               <Image
-                src={prismaUser.avatar || "/default-profile.jpg"}
+                src={avatarSrc}
                 width={40}
                 height={40}
                 alt="Profile"
                 className="rounded-full border-2 border-blue-500 shadow-xl"
               />
             </Link>
+
             <LogoutButton />
           </div>
         ) : (
