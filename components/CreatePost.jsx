@@ -15,12 +15,13 @@ export default function CreatePostPage() {
   function handleFileUpload(e) {
     const file = e.target.files[0];
     console.log(file);
-    if (file.name.endsWith(".mp4")) {
+    if (file && file.name.endsWith(".mp4")) {
       setIsVideo(true);
     }
     if (!file) return;
     if (file.size > 1024 * 1024 * 5) {
       toast.error("Image size must be less than 5MB");
+      setIsVideo(false);
       return;
     }
     setSelectedFile(file);
@@ -33,6 +34,7 @@ export default function CreatePostPage() {
   function removeImage() {
     setSelectedFile(null);
     setSelectedPreview(null);
+    setIsVideo(false);
   }
 
   async function handleSubmit(e) {
@@ -112,7 +114,7 @@ export default function CreatePostPage() {
                   type="file"
                   onChange={handleFileUpload}
                   className="hidden"
-                  accept="image/*"
+                  accept="image/video"
                 />
               </label>
             </div>

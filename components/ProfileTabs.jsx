@@ -136,7 +136,7 @@ export default function ProfileTabs({
                 >
                   <CgComment size="20px" />
 
-                  <span>{item?.comments?.length} </span>
+                  <span>{item?._count?.comments} </span>
                   <span className="hidden sm:inline">
                     {item?.comments?.length === 1 ? "comment" : "comments"}
                   </span>
