@@ -71,7 +71,7 @@ export default function CreatePostPage() {
     }
   }
   return (
-    <div className="w-full">
+    <div className="flex-1">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="bg-gray-100 rounded-2xl p-4">
           <input

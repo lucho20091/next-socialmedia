@@ -54,14 +54,16 @@ export default async function Home() {
       {prismaUser && (
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">
-            <div className="flex items-start px-4 py-6 sm:p-8 space-x-3">
-              <Image
-                src={prismaUser.avatar || "/default-profile.jpg"}
-                width={40}
-                height={40}
-                alt="Profile"
-                className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
-              />
+            <div className="flex items-start px-4 py-6 sm:p-8 gap-2">
+              <div className="relative rounded-full border-2 border-blue-500 w-11 h-11 overflow-hidden">
+                <Image
+                  src={prismaUser.avatar || "/default-profile.jpg"}
+                  alt="Profile"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
               <CreatePost />
             </div>
           </div>
@@ -83,7 +85,7 @@ export default async function Home() {
                     width={40}
                     height={40}
                     alt={`${item.author.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
+                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10 object-cover"
                   />
                 </Link>
                 <div className="flex-1 min-w-0">
