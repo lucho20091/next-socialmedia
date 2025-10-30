@@ -1,7 +1,7 @@
 import { getUserById } from "@/lib/actions/user";
 
 export async function generateMetadata({ params }) {
-  const { id } = params;
+  const { id } = await params;
   try {
     const user = await getUserById(id);
     const username = user.username ?? "user";
