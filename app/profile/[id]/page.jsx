@@ -16,7 +16,7 @@ export default async function page({ params }) {
   return (
     <div className="min-h-[calc(100svh-68px)]">
       <div className="max-w-3xl mx-auto py-4 sm:p-6">
-        <div className="bg-white rounded-xl mx-4 shadow-md p-6 flex items-start gap-4">
+        <div className="bg-white rounded-xl mx-4 shadow-md p-6 flex items-start gap-4 dark:bg-neutral-900">
           <img
             src={profileUser?.avatar || "/default-profile.jpg"}
             alt={
@@ -27,10 +27,10 @@ export default async function page({ params }) {
             className="w-20 h-20 rounded-full border-2 border-blue-500 object-cover shadow"
           />
           <div className="flex-1  min-w-0">
-            <h1 className="text-2xl font-bold text-gray-900 truncate">
+            <h1 className="text-2xl font-bold text-gray-900 truncate dark:text-gray-400">
               {profileUser?.username || "User"}
             </h1>
-            <div className="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
+            <div className="mt-3 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-500">
               <span>
                 <span className="font-semibold">
                   {profileUser?.writtenPosts?.length ?? 0}
@@ -54,7 +54,7 @@ export default async function page({ params }) {
           <div>
             {prismaUser && profileUser.id === prismaUser.id && (
               <Link href="/settings">
-                <IoSettings size="40px" />
+                <IoSettings size="40px" className="dark:text-gray-400" />
               </Link>
             )}
           </div>

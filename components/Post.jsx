@@ -25,7 +25,7 @@ export default function PostPage({
   return (
     <div
       key={post.id}
-      className="border-y border-gray-200 px-4 py-6 hover:bg-gray-50 transition-colors"
+      className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-neutral-950  transition-colors"
     >
       {/* post header */}
       <div className="flex items-start space-x-3">
@@ -44,7 +44,7 @@ export default function PostPage({
               href={`/profile/${post.author.id}`}
               className="min-w-0 max-w-full"
             >
-              <span className="block font-bold text-gray-900 truncate">
+              <span className="block font-bold text-gray-900 dark:text-gray-400 truncate">
                 {post.author.username}
               </span>
             </Link>
@@ -74,7 +74,9 @@ export default function PostPage({
       </div>
       {/* post content */}
       <div className="ml-13 mb-3 mt-0 sm:mt-[-16px]">
-        <p className="text-gray-900 text-lg leading-tight">{post.content}</p>
+        <p className="text-gray-900 dark:text-gray-300 text-lg leading-tight">
+          {post.content}
+        </p>
       </div>
       {/* post image */}
       {post.mediaUrl && !post.mediaUrl.endsWith(".mp4") && (
@@ -108,7 +110,7 @@ export default function PostPage({
         </div>
         <Link
           href={`/post/${post.id}`}
-          className="flex items-center justify-start gap-2 sm:gap-4 "
+          className="flex items-center justify-start gap-2 sm:gap-4 dark:text-gray-400"
         >
           <CgComment size="20px" />{" "}
           <span>{post?._count?.comments || post?.comments?.length} </span>
@@ -137,7 +139,7 @@ export default function PostPage({
             {post.comments.length > 0 &&
               post.comments.map((item) => (
                 <div key={item.id}>
-                  <div className="flex items-start space-x-3 pl-4 py-2 border-y-1 border-gray-200 hover:bg-gray-100 ">
+                  <div className="flex items-start space-x-3 pl-4 py-2 border-y-1 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-neutral-950">
                     <Link href={`/profile/${item.author.id}`}>
                       <Image
                         src={item.author.avatar || "/default-profile.jpg"}
@@ -151,7 +153,7 @@ export default function PostPage({
                       <div className="flex flex-col items-start sm:flex-row sm:items-center space-x-2">
                         <Link
                           href={`/profile/${item.author.id}`}
-                          className="font-semibold text-gray-900"
+                          className="font-semibold text-gray-900 dark:text-gray-400"
                         >
                           {item.author.username}
                         </Link>
@@ -159,7 +161,7 @@ export default function PostPage({
                           {formatDate(item.updatedAt)}
                         </span>
                       </div>
-                      <p className="text-gray-700 leading-tight">
+                      <p className="text-gray-700 leading-tight dark:text-gray-300">
                         {item.content}
                       </p>
                     </div>
@@ -192,7 +194,7 @@ export default function PostPage({
                   />
 
                   <div className="flex-1">
-                    <div className="bg-gray-100 rounded-md p-3">
+                    <div className="bg-gray-100 dark:bg-neutral-900 rounded-md p-3">
                       <CreateComment postId={post.id} />
                     </div>
                   </div>

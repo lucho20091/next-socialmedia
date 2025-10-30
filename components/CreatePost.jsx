@@ -88,13 +88,13 @@ export default function CreatePostPage() {
   return (
     <div className="flex-1">
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="bg-gray-100 rounded-2xl p-4">
+        <div className="bg-gray-100 dark:bg-neutral-900 rounded-2xl p-4">
           <input
             type="text"
             onChange={(e) => setContent(e.target.value)}
             value={content}
             placeholder="What's happening?"
-            className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed py-3"
+            className="w-full bg-transparent text-gray-900 dark:text-gray-300 placeholder-gray-500 outline-none text-lg leading-relaxed py-3"
           />
 
           <div className="flex items-center justify-between mt-3">
@@ -126,7 +126,7 @@ export default function CreatePostPage() {
             <button
               type="submit"
               disabled={!content.trim() || isLoading}
-              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors"
+              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600"
             >
               {isLoading ? "Posting..." : "Post"}
             </button>

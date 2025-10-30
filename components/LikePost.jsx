@@ -38,14 +38,18 @@ export default function LikePost({ postId, currentLikes, userId }) {
         {userHasLiked ? (
           <BiSolidLike size="20px" className="text-blue-500" />
         ) : (
-          <BiLike size="20px" />
+          <BiLike size="20px" className="dark:text-gray-400" />
         )}
       </button>
       {likes.length > 0 && (
         <span
           onClick={handleLike}
           className={` cursor-pointer
-            ${userHasLiked ? "text-blue-500 font-semibold" : "text-gray-500"}
+            ${
+              userHasLiked
+                ? "text-blue-500 font-semibold"
+                : "text-gray-500 dark:text-gray-400"
+            }
           `}
         >
           {likes.length} {likes.length === 1 ? "like" : "likes"}

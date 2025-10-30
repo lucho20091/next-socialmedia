@@ -118,3 +118,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 
+body bg-gray-950
+navbar bg-indigo-950/80
+form bg-gray-900
+form input text text-gray-300
+form button disabled text-gray-600
+post separators border-gray-800
+post hover bg-gray-900
+post username text-gray-400
+post controls text-gray-400 bg-gray-400
+post content text-gray-300
+post actions text-gray-400
+*/

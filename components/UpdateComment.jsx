@@ -38,8 +38,8 @@ export default function UpdateCommentPage({ id, text, imageUrl, username }) {
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="cursor-pointer border-1 border-black">
-        <BiEdit size="20px" />
+      <DialogTrigger className="cursor-pointer border-1 border-black dark:border-gray-400">
+        <BiEdit size="20px" className="dark:text-gray-400" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

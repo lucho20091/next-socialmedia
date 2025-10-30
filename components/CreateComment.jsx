@@ -15,7 +15,6 @@ export default function CommentPage({ postId }) {
         toast.success("comment created successfully");
       }
     } catch (e) {
-      console.log(e);
       toast.error("failed to create post");
     } finally {
       setIsLoading(false);
@@ -29,7 +28,7 @@ export default function CommentPage({ postId }) {
       <input
         type="text"
         placeholder="Add a comment..."
-        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none min-w-[150px]"
+        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none min-w-[150px] dark:text-gray-300"
         name="content"
         value={content}
         onChange={(e) => setContent(e.target.value)}

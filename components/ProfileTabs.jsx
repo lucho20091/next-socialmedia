@@ -25,8 +25,8 @@ export default function ProfileTabs({
       className={[
         "py-2 cursor-pointer",
         tab === id
-          ? "border-b-4 border-gray-400"
-          : "hover:border-b-2 hover:border-gray-100",
+          ? "border-b-4 border-gray-400 dark:border-gray-800"
+          : "hover:border-b-2 hover:border-gray-100 dark:hover:border-gray-700",
       ].join(" ")}
       type="button"
     >
@@ -39,7 +39,7 @@ export default function ProfileTabs({
       return <div className="text-center text-gray-500">{emptyLabel}</div>;
     }
     return (
-      <div className="space-y-3">
+      <div>
         {items &&
           items.length > 0 &&
           items.map((item) => (
@@ -56,7 +56,7 @@ export default function ProfileTabs({
 
   return (
     <div className="py-4 sm:p-6">
-      <div className="grid grid-cols-2 gap-2 mx-4">
+      <div className="grid grid-cols-2 gap-2 mx-4 dark:text-gray-400">
         <TabButton id="posts" label="Posts" />
         <TabButton id="likes" label="Likes" />
       </div>

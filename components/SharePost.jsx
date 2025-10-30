@@ -15,7 +15,7 @@ export default function SharePostPage({ id }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer">
+        <button className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer dark:text-gray-400">
           <CiShare2 size="20px" />
           <span className="hidden sm:inline">Share</span>
         </button>
