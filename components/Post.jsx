@@ -94,6 +94,7 @@ export default function PostPage({
           src={post.mediaUrl}
           className="w-full max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
           controls
+          loop
         />
       )}
       {/* post actions */}
