@@ -18,8 +18,8 @@ export default async function Page() {
 
   return (
     <div className="min-h-[calc(100svh-68px)]">
-      <div className="max-w-3xl mx-auto p-4 sm:p-6">
-        <div className="bg-white rounded-xl shadow-md p-6">
+      <div className="max-w-3xl mx-auto py-4 sm:p-6">
+        <div className="bg-white rounded-xl shadow-md p-6 mx-4">
           <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
           <p className="text-gray-500 mt-1">Update your profile information.</p>
           <div className="mt-6">
@@ -35,13 +35,18 @@ export default async function Page() {
               </div>
             )}
           </div>
-          {prismaUser.isAdmin &&
-            hiddenPosts.success &&
-            hiddenPosts?.hiddenPosts?.length > 0 &&
-            hiddenPosts?.hiddenPosts?.map((item) => (
-              <PostPage key={item.id} prismaUser={prismaUser} post={item} />
-            ))}
         </div>
+        {prismaUser.isAdmin &&
+          hiddenPosts.success &&
+          hiddenPosts?.hiddenPosts?.length > 0 &&
+          hiddenPosts?.hiddenPosts?.map((item) => (
+            <PostPage
+              key={item.id}
+              prismaUser={prismaUser}
+              post={item}
+              displayComments={false}
+            />
+          ))}
       </div>
     </div>
   );

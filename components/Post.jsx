@@ -92,7 +92,7 @@ export default function PostPage({
       {post.mediaUrl && post.mediaUrl.endsWith(".mp4") && (
         <video
           src={post.mediaUrl}
-          className="w-full sm:ml-13 max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
+          className="w-full max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
           controls
         />
       )}
