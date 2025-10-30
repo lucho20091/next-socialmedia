@@ -20,8 +20,8 @@ export default function CreatePostPage() {
       setIsVideo(true);
     }
     if (!file) return;
-    if (file.size > 1024 * 1024 * 5) {
-      toast.error("Image size must be less than 5MB");
+    if (file.size > 1024 * 1024 * 10) {
+      toast.error("media size must be less than 10MB");
       setIsVideo(false);
       return;
     }
@@ -64,7 +64,7 @@ export default function CreatePostPage() {
           }
         );
         if (!response.ok) {
-          toast.error("unable to add image");
+          toast.error("unable to add media");
         }
         const data = await response.json();
         mediaUrl = data.secure_url;

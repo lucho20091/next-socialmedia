@@ -23,7 +23,7 @@ export default function HidePostPage({ id }) {
     try {
       const result = await hidePost(id);
       if (result.success) {
-        toast.success("deleted post successfully");
+        toast.success("hid post successfully");
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
@@ -31,7 +31,7 @@ export default function HidePostPage({ id }) {
         }
       }
     } catch (e) {
-      toast.error("failed to delete post");
+      toast.error("failed to hid post");
     }
   }
   return (
