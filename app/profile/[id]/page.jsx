@@ -15,8 +15,8 @@ export default async function page({ params }) {
   console.log(profileUser);
   return (
     <div className="min-h-[calc(100svh-68px)]">
-      <div className="max-w-3xl mx-auto p-4 sm:p-6">
-        <div className="bg-white rounded-xl shadow-md p-6 flex items-start gap-4">
+      <div className="max-w-3xl mx-auto py-4 sm:p-6">
+        <div className="bg-white rounded-xl mx-4 shadow-md p-6 flex items-start gap-4">
           <img
             src={profileUser?.avatar || "/default-profile.jpg"}
             alt={
@@ -62,7 +62,7 @@ export default async function page({ params }) {
         <ProfileTabs
           writtenPosts={profileUser.writtenPosts}
           likedPosts={profileUser.likedPosts}
-          userId={prismaUser ? prismaUser.id : ""}
+          user={prismaUser ? prismaUser : ""}
         />
       </div>
     </div>

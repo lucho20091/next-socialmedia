@@ -1,0 +1,198 @@
+import Image from "next/image";
+import Link from "next/link";
+import { CgComment } from "react-icons/cg";
+import SharePostPage from "@/components/SharePost";
+import CreateComment from "@/components/CreateComment";
+import DeleteCommentPage from "@/components/DeleteComment";
+import UpdateCommentPage from "@/components/UpdateComment";
+import LikePost from "@/components/LikePost";
+
+import UpdatePostPage from "@/components/updatePost";
+import DeletePostPage from "@/components/DeletePost";
+import { formatDistanceToNow } from "date-fns";
+export default function PostPage({
+  post,
+  prismaUser,
+  displayComments = true,
+  homePage = false,
+}) {
+  function formatDate(date) {
+    const dateFns = formatDistanceToNow(date, { addSuffix: true });
+    return dateFns.replace(/^about\s/, "");
+  }
+  return (
+    <div
+      key={post.id}
+      className="border-b border-gray-200 px-4 py-6 hover:bg-gray-50 transition-colors"
+    >
+      {/* post header */}
+      <div className="flex items-start space-x-3">
+        <Link href={`/profile/${post.author.id}`}>
+          <Image
+            src={post.author.avatar || "/default-profile.jpg"}
+            width={40}
+            height={40}
+            alt={`${post.author.username} avatar`}
+            className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10 object-cover"
+          />
+        </Link>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-col items-start sm:flex-row sm:items-center space-x-2 min-w-0">
+            <Link
+              href={`/profile/${post.author.id}`}
+              className="min-w-0 max-w-full"
+            >
+              <span className="block font-bold text-gray-900 truncate">
+                {post.author.username}
+              </span>
+            </Link>
+            <span className="text-gray-500 text-xs sm:text-base">
+              {formatDate(post.createdAt)}
+            </span>
+          </div>
+        </div>
+        {prismaUser && post.author.id === prismaUser.id && (
+          <div className="ml-auto flex gap-2">
+            <UpdatePostPage
+              id={post.id}
+              text={post.content}
+              imageUrl={prismaUser.avatar || "/default-profile.jpg"}
+              username={prismaUser.username}
+            />
+
+            <DeletePostPage id={post.id} />
+          </div>
+        )}
+      </div>
+      {/* post content */}
+      <div className="ml-13 mb-3 mt-0 sm:mt-[-16px]">
+        <p className="text-gray-900 text-lg leading-tight">{post.content}</p>
+      </div>
+      {/* post image */}
+      {post.imageUrl && !post.imageUrl.endsWith(".mp4") && (
+        <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
+          <Image
+            src={post.imageUrl}
+            width={500}
+            height={500}
+            alt={`Image posted by ${post.author.username}`}
+            className="w-full h-auto object-contain"
+          />
+        </div>
+      )}
+      {/* post video */}
+      {post.imageUrl && post.imageUrl.endsWith(".mp4") && (
+        <video
+          src={post.imageUrl}
+          className="w-full sm:ml-13 max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
+          controls
+        />
+      )}
+      {/* post actions */}
+      <div className="grid grid-cols-[2fr_2fr_1fr] sm:grid-cols-3 sm:ml-13">
+        <div className="flex items-center justify-start gap-2 sm:gap-4 ">
+          <LikePost
+            postId={post.id}
+            currentLikes={post.likedBy}
+            userId={prismaUser?.id || null}
+          />
+        </div>
+        <Link
+          href={`/post/${post.id}`}
+          className="flex items-center justify-start gap-2 sm:gap-4 "
+        >
+          <CgComment size="20px" />{" "}
+          <span>{post?._count?.comments || post?.comments?.length} </span>
+          <span className="hidden sm:inline">
+            {post?._count?.comments === 1 || post?.comments?.length === 1
+              ? "comment"
+              : "comments"}
+          </span>
+        </Link>
+        <div className="flex items-center justify-end gap-4 ">
+          <SharePostPage id={post.id} />
+        </div>
+      </div>
+      {displayComments && (
+        <>
+          {/* comment section */}
+          <div className="sm:ml-13 mt-4">
+            {homePage && post._count.comments > 2 && (
+              <Link
+                className="inline-block text-blue-800 font-semibold mb-2"
+                href={`/post/${post.id}`}
+              >
+                View more comments
+              </Link>
+            )}
+            {post.comments.length > 0 &&
+              post.comments.map((item) => (
+                <div key={item.id}>
+                  <div className="flex items-start space-x-3 pl-4 py-2 border-y-1 border-gray-200 hover:bg-gray-100 ">
+                    <Link href={`/profile/${item.author.id}`}>
+                      <Image
+                        src={item.author.avatar || "/default-profile.jpg"}
+                        width={40}
+                        height={40}
+                        alt="Profile"
+                        className="rounded-full border-2 border-blue-500 shadow-xl object-cover w-10 h-10"
+                      />
+                    </Link>
+                    <div className="flex-1">
+                      <div className="flex flex-col items-start sm:flex-row sm:items-center space-x-2">
+                        <Link
+                          href={`/profile/${item.author.id}`}
+                          className="font-semibold text-gray-900"
+                        >
+                          {item.author.username}
+                        </Link>
+                        <span className="text-gray-500 text-xs sm:text-base">
+                          {formatDate(item.updatedAt)}
+                        </span>
+                      </div>
+                      <p className="text-gray-700 leading-tight">
+                        {item.content}
+                      </p>
+                    </div>
+                    {prismaUser && item.author.id === prismaUser.id && (
+                      <div className="ml-auto flex gap-2">
+                        <UpdateCommentPage
+                          id={item.id}
+                          text={item.content}
+                          imageUrl={prismaUser.avatar || "/default-profile.jpg"}
+                          username={prismaUser.username}
+                        />
+                        <DeleteCommentPage commentId={item.id} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+          </div>
+          {/* comment form */}
+          {prismaUser && (
+            <>
+              <div className="pt-4">
+                <div className="flex items-start space-x-3">
+                  <Image
+                    src={prismaUser?.avatar || "/default-profile.jpg"}
+                    width={40}
+                    height={40}
+                    alt={`${prismaUser.username} avatar`}
+                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
+                  />
+
+                  <div className="flex-1">
+                    <div className="bg-gray-100 rounded-md p-3">
+                      <CreateComment postId={post.id} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
