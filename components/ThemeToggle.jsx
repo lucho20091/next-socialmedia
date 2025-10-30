@@ -16,7 +16,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="w-10 h-10 rounded-full grid place-items-center cursor-pointer bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-2 border-black dark:border-white"
+      className="w-10 h-10 rounded-full grid place-items-center cursor-pointer bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-2 border-black dark:border-gray-500 shadow-md dark:shadow-gray-900"
     >
       {theme === "light" ? <MdDarkMode /> : <CiLight />}
     </button>

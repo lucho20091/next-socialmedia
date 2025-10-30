@@ -87,7 +87,10 @@ export default function CreatePostPage() {
   }
   return (
     <div className="flex-1">
-      <form className="w-full" onSubmit={handleSubmit}>
+      <form
+        className="w-full shadow-md dark:shadow-gray-900"
+        onSubmit={handleSubmit}
+      >
         <div className="bg-gray-100 dark:bg-neutral-900 rounded-2xl p-4">
           <input
             type="text"

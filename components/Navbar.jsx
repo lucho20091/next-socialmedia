@@ -32,7 +32,7 @@ export default async function Navbar() {
                   width={40}
                   height={40}
                   alt="Profile"
-                  className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
+                  className="rounded-full border-2 border-blue-500 shadow-md w-10 h-10 dark:shadow-blue-900"
                 />
               </Link>
 

@@ -35,7 +35,7 @@ export default function PostPage({
             width={40}
             height={40}
             alt={`${post.author.username} avatar`}
-            className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10 object-cover"
+            className="rounded-full border-2 border-blue-500 shadow-md w-10 h-10 object-cover dark:shadow-blue-900"
           />
         </Link>
         <div className="flex-1 min-w-0">
@@ -190,11 +190,11 @@ export default function PostPage({
                     width={40}
                     height={40}
                     alt={`${prismaUser.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
+                    className="rounded-full border-2 border-gray-800 shadow-xl dark:shadow-gray-900 w-10 h-10"
                   />
 
                   <div className="flex-1">
-                    <div className="bg-gray-100 dark:bg-neutral-900 rounded-md p-3">
+                    <div className="bg-gray-100 dark:bg-neutral-900 rounded-md p-3 shadow-md dark:shadow-gray-900">
                       <CreateComment postId={post.id} />
                     </div>
                   </div>

@@ -40,14 +40,13 @@ export default async function Home() {
         <div className="flex justify-center items-start">
           <div className="w-full max-w-2xl">
             <div className="flex items-start px-4 py-6 sm:p-8 gap-2">
-              <div className="relative rounded-full border-2 border-blue-500 w-11 h-11 overflow-hidden">
-                <Image
-                  src={prismaUser.avatar || "/default-profile.jpg"}
-                  alt="Profile"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src={prismaUser.avatar || "/default-profile.jpg"}
+                alt="Profile"
+                width={40}
+                height={40}
+                className="object-cover rounded-full border-2 border-gray-800 w-11 h-11 shadow-xl dark:shadow-gray-900"
+              />
 
               <CreatePost />
             </div>
