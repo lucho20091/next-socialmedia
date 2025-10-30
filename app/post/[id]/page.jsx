@@ -12,12 +12,8 @@ export default async function page({ params }) {
   }
   const getPost = await readPostById(id);
   console.log(getPost);
-  function formatDate(date) {
-    const dateFns = formatDistanceToNow(date, { addSuffix: true });
-    return dateFns.replace(/^about\s/, "");
-  }
   return (
-    <div className="min-h-[calc(100svh-68px)]">
+    <div className="min-h-[calc(100svh-100px)]">
       <div className="max-w-2xl mx-auto">
         {getPost && <PostPage post={getPost} prismaUser={prismaUser} />}
       </div>

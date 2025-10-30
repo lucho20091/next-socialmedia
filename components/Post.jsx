@@ -92,12 +92,14 @@ export default function PostPage({
       )}
       {/* post video */}
       {post.mediaUrl && post.mediaUrl.endsWith(".mp4") && (
-        <video
-          src={post.mediaUrl}
-          className="w-full max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
-          controls
-          loop
-        />
+        <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
+          <video
+            src={post.mediaUrl}
+            className="w-full h-auto object-contain"
+            controls
+            loop
+          />
+        </div>
       )}
       {/* post actions */}
       <div className="grid grid-cols-[2fr_2fr_1fr] sm:grid-cols-3 sm:ml-13">
