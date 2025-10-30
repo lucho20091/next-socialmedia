@@ -4,14 +4,20 @@ import toast from "react-hot-toast";
 import { createPost } from "@/lib/actions/post";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { set } from "date-fns";
 export default function CreatePostPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [content, setContent] = useState("");
   const [selectedPreview, setSelectedPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isVideo, setIsVideo] = useState(false);
   const router = useRouter();
   function handleFileUpload(e) {
     const file = e.target.files[0];
+    console.log(file);
+    if (file.name.endsWith(".mp4")) {
+      setIsVideo(true);
+    }
     if (!file) return;
     if (file.size > 1024 * 1024 * 5) {
       toast.error("Image size must be less than 5MB");
@@ -22,6 +28,8 @@ export default function CreatePostPage() {
     setSelectedPreview(previewUrl);
   }
 
+  console.log(selectedPreview);
+  console.log(isVideo);
   function removeImage() {
     setSelectedFile(null);
     setSelectedPreview(null);
@@ -42,7 +50,9 @@ export default function CreatePostPage() {
         formData.append("signature", signature);
         formData.append("folder", "uploads");
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          `https://api.cloudinary.com/v1_1/${
+            process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+          }/${isVideo ? "video" : "image"}/upload`,
           {
             method: "POST",
             body: formData,
@@ -118,7 +128,7 @@ export default function CreatePostPage() {
         </div>
       </form>
 
-      {selectedPreview && (
+      {selectedPreview && !isVideo && (
         <div className="relative mt-4 rounded-2xl overflow-hidden">
           <Image
             src={selectedPreview}
@@ -126,6 +136,34 @@ export default function CreatePostPage() {
             width={800}
             height={320}
             className="w-full md:w-[300px] h-auto object-contain"
+          />
+          <button
+            type="button"
+            onClick={removeImage}
+            className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
+      {selectedPreview && isVideo && (
+        <div className="relative mt-4 rounded-2xl overflow-hidden">
+          <video
+            src={selectedPreview}
+            className="w-full md:w-[300px] h-auto object-contain"
+            controls
           />
           <button
             type="button"

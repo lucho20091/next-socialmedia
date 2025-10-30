@@ -73,7 +73,7 @@ export default async function page({ params }) {
               </p>
             </div>
             {/* post image */}
-            {getPost.imageUrl && (
+            {getPost.imageUrl && !getPost.imageUrl.endsWith(".mp4") && (
               <div className="ml-13 mb-3 rounded-2xl bg-black">
                 <Image
                   src={getPost.imageUrl}
@@ -83,6 +83,14 @@ export default async function page({ params }) {
                   className="w-full h-auto object-contain"
                 />
               </div>
+            )}
+            {/* post video */}
+            {getPost.imageUrl && getPost.imageUrl.endsWith(".mp4") && (
+              <video
+                src={getPost.imageUrl}
+                className="w-full max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
+                controls
+              />
             )}
             {/* post actions */}
             <div className="ml-13 grid grid-cols-[1fr_1.5fr_0.5fr] sm:grid-cols-3">

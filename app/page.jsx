@@ -123,7 +123,7 @@ export default async function Home() {
                 </p>
               </div>
               {/* post image */}
-              {item.imageUrl && (
+              {item.imageUrl && !item.imageUrl.endsWith(".mp4") && (
                 <Link
                   href={`/post/${item.id}`}
                   className="block ml-13 mb-4 rounded-2xl bg-black"
@@ -136,6 +136,14 @@ export default async function Home() {
                     className="w-full h-auto object-contain"
                   />
                 </Link>
+              )}
+              {/* post video */}
+              {item.imageUrl && item.imageUrl.endsWith(".mp4") && (
+                <video
+                  src={item.imageUrl}
+                  className="w-full max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
+                  controls
+                />
               )}
               {/* post actions */}
               <div className="ml-13 grid grid-cols-3">
