@@ -55,7 +55,7 @@ export default function ProfileTabs({
                       width={40}
                       height={40}
                       alt={`${item.author.username} avatar`}
-                      className="rounded-full border-2 border-blue-500 shadow-xl"
+                      className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                     />
                   </Link>
                 ) : (
@@ -64,7 +64,7 @@ export default function ProfileTabs({
                     width={40}
                     height={40}
                     alt={`${item.author.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl"
+                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                   />
                 )}
                 <div className="flex-1">

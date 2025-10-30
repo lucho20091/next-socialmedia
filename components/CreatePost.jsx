@@ -125,7 +125,7 @@ export default function CreatePostPage() {
             alt="Selected"
             width={800}
             height={320}
-            className="w-full h-auto object-cover"
+            className="w-full md:w-[300px] h-auto object-contain"
           />
           <button
             type="button"

@@ -26,8 +26,8 @@ export default async function page({ params }) {
             }
             className="w-20 h-20 rounded-full border-2 border-blue-500 object-cover shadow"
           />
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900">
+          <div className="flex-1  min-w-0">
+            <h1 className="text-2xl font-bold text-gray-900 truncate">
               {profileUser?.username || "User"}
             </h1>
             <div className="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">

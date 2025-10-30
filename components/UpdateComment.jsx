@@ -55,7 +55,7 @@ export default function UpdateCommentPage({ id, text, imageUrl, username }) {
               width={40}
               height={40}
               alt="Profile"
-              className="rounded-full border-2 border-blue-500 shadow-xl"
+              className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
             />
             <div className="flex flex-1 flex-col justify-center items-start">
               <span className="font-bold text-gray-900 text-left">

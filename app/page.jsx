@@ -60,7 +60,7 @@ export default async function Home() {
                 width={40}
                 height={40}
                 alt="Profile"
-                className="rounded-full border-2 border-blue-500 shadow-xl"
+                className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
               />
               <CreatePost />
             </div>
@@ -83,13 +83,16 @@ export default async function Home() {
                     width={40}
                     height={40}
                     alt={`${item.author.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl"
+                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                   />
                 </Link>
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center space-x-2">
-                    <Link href={`/profile/${item.author.id}`}>
-                      <span className="font-bold text-gray-900">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col items-start sm:flex-row sm:items-center space-x-2 min-w-0">
+                    <Link
+                      href={`/profile/${item.author.id}`}
+                      className="min-w-0 max-w-full"
+                    >
+                      <span className="block font-bold text-gray-900 truncate">
                         {item.author.username}
                       </span>
                     </Link>
@@ -112,7 +115,7 @@ export default async function Home() {
                 )}
               </div>
               {/* post content */}
-              <div className="ml-13 mb-3 mt-[-16px]">
+              <div className="ml-13 mb-3 mt-0 sm:mt-[-16px]">
                 <p className="text-gray-900 text-lg leading-tight">
                   {item.content}
                 </p>
@@ -174,7 +177,7 @@ export default async function Home() {
                             width={40}
                             height={40}
                             alt="Profile"
-                            className="rounded-full border-2 border-blue-500 shadow-xl"
+                            className="rounded-full border-2 border-blue-500 shadow-xl object-cover w-10 h-10"
                           />
                         </Link>
                         <div className="flex-1">
@@ -218,7 +221,7 @@ export default async function Home() {
                         width={40}
                         height={40}
                         alt={`${prismaUser.username} avatar`}
-                        className="rounded-full border-2 border-blue-500 shadow-xl"
+                        className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                       />
 
                       <div className="flex-1">

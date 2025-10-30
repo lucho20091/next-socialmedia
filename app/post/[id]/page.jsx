@@ -38,7 +38,7 @@ export default async function page({ params }) {
                   width={40}
                   height={40}
                   alt={`${getPost.author.username} avatar`}
-                  className="rounded-full border-2 border-blue-500 shadow-xl"
+                  className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                 />
               </Link>
               <div className="flex-1">
@@ -119,7 +119,7 @@ export default async function page({ params }) {
                           width={40}
                           height={40}
                           alt="Profile"
-                          className="rounded-full border-2 border-blue-500 shadow-xl"
+                          className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                         />
                       </Link>
                       <div className="flex-1">
@@ -162,7 +162,7 @@ export default async function page({ params }) {
                     width={40}
                     height={40}
                     alt={`${prismaUser.username} avatar`}
-                    className="rounded-full border-2 border-blue-500 shadow-xl"
+                    className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
                   />
 
                   <div className="flex-1">

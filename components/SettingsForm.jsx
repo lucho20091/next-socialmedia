@@ -135,6 +135,7 @@ export default function SettingsForm({
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Your username"
+          maxLength={20}
           className="mt-2 w-full rounded-md border px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
