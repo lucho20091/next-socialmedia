@@ -1,5 +1,6 @@
 "use client";
-import { deletePost } from "@/lib/actions/post";
+import { hidePost } from "@/lib/actions/post";
+import { MdHideSource } from "react-icons/md";
 import {
   Dialog,
   DialogContent,
@@ -13,14 +14,14 @@ import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useRouter, usePathname } from "next/navigation";
 import toast from "react-hot-toast";
-export default function DeletePostPage({ id }) {
+export default function HidePostPage({ id }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await deletePost(id);
+      const result = await hidePost(id);
       if (result.success) {
         toast.success("deleted post successfully");
         setOpen(false);
@@ -35,16 +36,13 @@ export default function DeletePostPage({ id }) {
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="cursor-pointer border-1 border-red-500">
-        <AiOutlineDelete className="text-red-500" size="20px" />
+      <DialogTrigger className="cursor-pointer border-1 border-black">
+        <MdHideSource size="20px" />
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            post.
-          </DialogDescription>
+          <DialogDescription>This will hide this post.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
           <Button
@@ -52,7 +50,7 @@ export default function DeletePostPage({ id }) {
             variant="destructive"
             className="cursor-pointer"
           >
-            Delete
+            Hide
           </Button>
         </form>
       </DialogContent>

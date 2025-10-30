@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { createPost } from "@/lib/actions/post";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { set } from "date-fns";
+
 export default function CreatePostPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [content, setContent] = useState("");
@@ -12,6 +12,7 @@ export default function CreatePostPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
   const router = useRouter();
+  const fileInputRef = useRef(null);
   function handleFileUpload(e) {
     const file = e.target.files[0];
     console.log(file);
@@ -29,19 +30,21 @@ export default function CreatePostPage() {
     setSelectedPreview(previewUrl);
   }
 
-  console.log(selectedPreview);
-  console.log(isVideo);
-  function removeImage() {
+  function removeMedia() {
     setSelectedFile(null);
     setSelectedPreview(null);
     setIsVideo(false);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      let imageUrl;
+      let mediaUrl;
       if (selectedFile) {
         const sigRes = await fetch("/api/signature");
         const { timestamp, signature } = await sigRes.json();
@@ -64,9 +67,9 @@ export default function CreatePostPage() {
           toast.error("unable to add image");
         }
         const data = await response.json();
-        imageUrl = data.secure_url;
+        mediaUrl = data.secure_url;
       }
-      const result = await createPost(content.trim(), imageUrl);
+      const result = await createPost(content.trim(), mediaUrl);
 
       if (result.success) {
         setContent("");
@@ -115,6 +118,7 @@ export default function CreatePostPage() {
                   onChange={handleFileUpload}
                   className="hidden"
                   accept="image/video"
+                  ref={fileInputRef}
                 />
               </label>
             </div>
@@ -142,7 +146,7 @@ export default function CreatePostPage() {
           <button
             type="button"
             onClick={removeImage}
-            className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors"
+            className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors cursor-pointer"
           >
             <svg
               className="w-4 h-4"
@@ -169,8 +173,8 @@ export default function CreatePostPage() {
           />
           <button
             type="button"
-            onClick={removeImage}
-            className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors"
+            onClick={removeMedia}
+            className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors cursor-pointer"
           >
             <svg
               className="w-4 h-4"

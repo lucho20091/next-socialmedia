@@ -15,7 +15,13 @@ import { BiEdit } from "react-icons/bi";
 import { updatePost } from "@/lib/actions/post";
 import toast from "react-hot-toast";
 import Image from "next/image";
-export default function updatePostPage({ id, text, imageUrl, username }) {
+export default function updatePostPage({
+  id,
+  text,
+  imageUrl,
+  username,
+  isAdmin,
+}) {
   const [content, setContent] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -50,17 +56,21 @@ export default function updatePostPage({ id, text, imageUrl, username }) {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="shadow-xl border-1 border-gray-200 p-4 flex items-start justify-start gap-4">
-            <Image
-              src={imageUrl || "/default-profile.jpg"}
-              width={40}
-              height={40}
-              alt="Profile"
-              className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
-            />
+            {!isAdmin && (
+              <Image
+                src={imageUrl || "/default-profile.jpg"}
+                width={40}
+                height={40}
+                alt="Profile"
+                className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
+              />
+            )}
             <div className="flex flex-1 flex-col justify-center items-start">
-              <span className="font-bold text-gray-900 text-left">
-                {username}
-              </span>
+              {!isAdmin && (
+                <span className="font-bold text-gray-900 text-left">
+                  {username}
+                </span>
+              )}
               <input
                 type="text"
                 onChange={(e) => setContent(e.target.value)}

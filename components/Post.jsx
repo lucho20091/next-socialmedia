@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CgComment } from "react-icons/cg";
+
 import SharePostPage from "@/components/SharePost";
 import CreateComment from "@/components/CreateComment";
 import DeleteCommentPage from "@/components/DeleteComment";
@@ -9,6 +10,7 @@ import LikePost from "@/components/LikePost";
 
 import UpdatePostPage from "@/components/updatePost";
 import DeletePostPage from "@/components/DeletePost";
+import HidePostPage from "./HidePost";
 import { formatDistanceToNow } from "date-fns";
 export default function PostPage({
   post,
@@ -23,7 +25,7 @@ export default function PostPage({
   return (
     <div
       key={post.id}
-      className="border-b border-gray-200 px-4 py-6 hover:bg-gray-50 transition-colors"
+      className="border-y border-gray-200 px-4 py-6 hover:bg-gray-50 transition-colors"
     >
       {/* post header */}
       <div className="flex items-start space-x-3">
@@ -51,28 +53,34 @@ export default function PostPage({
             </span>
           </div>
         </div>
-        {prismaUser && post.author.id === prismaUser.id && (
-          <div className="ml-auto flex gap-2">
-            <UpdatePostPage
-              id={post.id}
-              text={post.content}
-              imageUrl={prismaUser.avatar || "/default-profile.jpg"}
-              username={prismaUser.username}
-            />
+        <div className="ml-auto flex gap-2">
+          {prismaUser && prismaUser?.isAdmin && <HidePostPage id={post.id} />}
+          {prismaUser &&
+            (post.author.id === prismaUser.id ||
+              prismaUser.isAdmin === true) && (
+              <>
+                <UpdatePostPage
+                  id={post.id}
+                  text={post.content}
+                  imageUrl={prismaUser.avatar || "/default-profile.jpg"}
+                  username={prismaUser.username}
+                  isAdmin={prismaUser.isAdmin}
+                />
 
-            <DeletePostPage id={post.id} />
-          </div>
-        )}
+                <DeletePostPage id={post.id} />
+              </>
+            )}
+        </div>
       </div>
       {/* post content */}
       <div className="ml-13 mb-3 mt-0 sm:mt-[-16px]">
         <p className="text-gray-900 text-lg leading-tight">{post.content}</p>
       </div>
       {/* post image */}
-      {post.imageUrl && !post.imageUrl.endsWith(".mp4") && (
+      {post.mediaUrl && !post.mediaUrl.endsWith(".mp4") && (
         <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
           <Image
-            src={post.imageUrl}
+            src={post.mediaUrl}
             width={500}
             height={500}
             alt={`Image posted by ${post.author.username}`}
@@ -81,9 +89,9 @@ export default function PostPage({
         </div>
       )}
       {/* post video */}
-      {post.imageUrl && post.imageUrl.endsWith(".mp4") && (
+      {post.mediaUrl && post.mediaUrl.endsWith(".mp4") && (
         <video
-          src={post.imageUrl}
+          src={post.mediaUrl}
           className="w-full sm:ml-13 max-w-[500px] mx-auto h-auto object-contain mb-4 rounded-md"
           controls
         />

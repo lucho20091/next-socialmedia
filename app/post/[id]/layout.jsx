@@ -1,7 +1,7 @@
 import { readPostById } from "@/lib/actions/post";
 
 export async function generateMetadata({ params }) {
-  const { id } = params;
+  const { id } = await params;
   try {
     const post = await readPostById(id);
     const username = post?.author?.username ?? "user";
