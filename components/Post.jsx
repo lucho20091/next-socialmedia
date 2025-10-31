@@ -95,7 +95,7 @@ export default function PostPage({
         <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
           <video
             src={post.mediaUrl}
-            className="w-full h-auto object-contain"
+            className="w-full h-auto max-h-[600px] object-contain"
             controls
             loop
           />
