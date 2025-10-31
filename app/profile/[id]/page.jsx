@@ -43,12 +43,6 @@ export default async function page({ params }) {
                 </span>{" "}
                 likes
               </span>
-              <span>
-                <span className="font-semibold">
-                  {profileUser?.comments?.length ?? 0}
-                </span>{" "}
-                comments
-              </span>
             </div>
           </div>
           <div>
