@@ -36,9 +36,9 @@ export default function LikePost({ postId, currentLikes, userId }) {
     <>
       <button className="cursor-pointer" onClick={handleLike}>
         {userHasLiked ? (
-          <BiSolidLike size="20px" className="text-blue-500" />
+          <BiSolidLike size="25px" className="text-blue-500" />
         ) : (
-          <BiLike size="20px" className="dark:text-gray-400" />
+          <BiLike size="25px" className="dark:text-gray-400" />
         )}
       </button>
       {likes.length > 0 && (

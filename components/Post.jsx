@@ -114,7 +114,7 @@ export default function PostPage({
           href={`/post/${post.id}`}
           className="flex items-center justify-start gap-2 sm:gap-4 dark:text-gray-400"
         >
-          <CgComment size="20px" />{" "}
+          <CgComment size="25px" />{" "}
           <span>{post?._count?.comments || post?.comments?.length} </span>
           <span className="hidden sm:inline">
             {post?._count?.comments === 1 || post?.comments?.length === 1
@@ -167,17 +167,22 @@ export default function PostPage({
                         {item.content}
                       </p>
                     </div>
-                    {prismaUser && item.author.id === prismaUser.id && (
-                      <div className="ml-auto flex gap-2">
-                        <UpdateCommentPage
-                          id={item.id}
-                          text={item.content}
-                          imageUrl={prismaUser.avatar || "/default-profile.jpg"}
-                          username={prismaUser.username}
-                        />
-                        <DeleteCommentPage commentId={item.id} />
-                      </div>
-                    )}
+                    {prismaUser &&
+                      (item.author.id === prismaUser.id ||
+                        prismaUser.isAdmin) && (
+                        <div className="ml-auto flex gap-2">
+                          <UpdateCommentPage
+                            id={item.id}
+                            text={item.content}
+                            imageUrl={
+                              prismaUser.avatar || "/default-profile.jpg"
+                            }
+                            username={prismaUser.username}
+                            isAdmin={prismaUser.isAdmin}
+                          />
+                          <DeleteCommentPage commentId={item.id} />
+                        </div>
+                      )}
                   </div>
                 </div>
               ))}

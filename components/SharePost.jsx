@@ -16,7 +16,7 @@ export default function SharePostPage({ id }) {
     <Dialog>
       <DialogTrigger asChild>
         <button className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer dark:text-gray-400">
-          <CiShare2 size="20px" />
+          <CiShare2 size="25px" />
           <span className="hidden sm:inline">Share</span>
         </button>
       </DialogTrigger>
@@ -50,7 +50,3 @@ export default function SharePostPage({ id }) {
     </Dialog>
   );
 }
-
-//   <button className="cursor-pointer">
-//     <CiShare2 size="20px" />
-//   </button>{" "}

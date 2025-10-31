@@ -22,10 +22,10 @@ export default async function Navbar() {
           Social
           <span className="text-blue-500 font-bold">Media</span>
         </Link>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-2  sm:gap-4">
           <ThemeToggle />
           {user ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Link href={profileHref}>
                 <Image
                   src={avatarSrc}

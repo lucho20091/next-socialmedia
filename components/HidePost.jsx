@@ -37,7 +37,7 @@ export default function HidePostPage({ id }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="cursor-pointer border-1 border-black dark:border-gray-400">
-        <MdHideSource size="20px" className="dark:text-gray-400" />
+        <MdHideSource size="25px" className="dark:text-gray-400" />
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>

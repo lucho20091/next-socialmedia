@@ -38,7 +38,7 @@ export default function DeletePostPage({ id }) {
       <DialogTrigger className="cursor-pointer border-1 border-red-500 dark:border-red-500/60">
         <AiOutlineDelete
           className="text-red-500 dark:text-red-500/60"
-          size="20px"
+          size="25px"
         />
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">

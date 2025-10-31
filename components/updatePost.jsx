@@ -45,7 +45,7 @@ export default function updatePostPage({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="cursor-pointer border-1 border-black dark:border-gray-400">
-        <BiEdit size="20px" className="dark:text-gray-400" />
+        <BiEdit size="25px" className="dark:text-gray-400" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -76,7 +76,7 @@ export default function updatePostPage({
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
                 placeholder="What's happening?"
-                className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed"
+                className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
               />
             </div>
           </div>
