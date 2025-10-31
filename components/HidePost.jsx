@@ -23,7 +23,7 @@ export default function HidePostPage({ id }) {
     try {
       const result = await hidePost(id);
       if (result.success) {
-        toast.success("hid post successfully");
+        toast.success("toggled hid post successfully");
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
@@ -31,7 +31,7 @@ export default function HidePostPage({ id }) {
         }
       }
     } catch (e) {
-      toast.error("failed to hid post");
+      toast.error("failed to toggle hid post");
     }
   }
   return (
@@ -42,7 +42,9 @@ export default function HidePostPage({ id }) {
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>This will hide this post.</DialogDescription>
+          <DialogDescription>
+            This will toggle hide this post.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
           <Button
@@ -50,7 +52,7 @@ export default function HidePostPage({ id }) {
             variant="destructive"
             className="cursor-pointer"
           >
-            Hide
+            Toggle hide
           </Button>
         </form>
       </DialogContent>

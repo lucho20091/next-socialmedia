@@ -20,8 +20,7 @@ export default async function Navbar() {
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-indigo-950/80 backdrop-blur-md shadow-md p-4">
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
         <Link href="/" className="text-2xl font-bold dark:text-gray-300">
-          Social
-          <span className="text-blue-500 font-bold">Media</span>
+          S<span className="text-blue-500 font-bold">Media</span>
         </Link>
         <div className="flex items-center justify-center gap-2  sm:gap-4">
           {prismaUser && prismaUser.isAdmin && (
