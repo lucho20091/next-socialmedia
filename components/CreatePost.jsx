@@ -20,8 +20,8 @@ export default function CreatePostPage() {
       setIsVideo(true);
     }
     if (!file) return;
-    if (file.size > 1024 * 1024 * 10) {
-      toast.error("media size must be less than 10MB");
+    if (file.size > 1024 * 1024 * 10 * 4) {
+      toast.error("media size must be less than 40MB");
       setIsVideo(false);
       return;
     }
