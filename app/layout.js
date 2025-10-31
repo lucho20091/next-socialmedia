@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SocialMedia",
+  title: "SMedia",
   description:
-    "Share posts, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
+    "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
   icons: {
     icon: "/favicon.svg",
   },
