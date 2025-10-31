@@ -34,7 +34,7 @@ export default function SharePostPage({ id }) {
             </label>
             <input
               id="link"
-              defaultValue={`https://socialmedia.lucho.uk/post/${id}`}
+              defaultValue={`https://smedia.lucho.uk/post/${id}`}
               readOnly
             />
           </div>
