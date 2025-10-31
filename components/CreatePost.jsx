@@ -120,7 +120,7 @@ export default function CreatePostPage() {
                   type="file"
                   onChange={handleFileUpload}
                   className="hidden"
-                  accept="image/video"
+                  accept="image/*,video/*"
                   ref={fileInputRef}
                 />
               </label>

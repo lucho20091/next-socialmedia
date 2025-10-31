@@ -1,20 +1,12 @@
-// app/settings/page.jsx
 import { stackServerApp } from "@/stack/server";
 import { getUserByEmail } from "@/lib/actions/user";
-import { readHiddenPosts } from "@/lib/actions/post";
 import SettingsForm from "@/components/SettingsForm";
-import PostPage from "@/components/Post";
 export default async function Page() {
   const user = await stackServerApp.getUser();
   let prismaUser = null;
   if (user?.primaryEmail) {
     prismaUser = await getUserByEmail(user.primaryEmail);
   }
-  let hiddenPosts;
-  if (prismaUser.isAdmin) {
-    hiddenPosts = await readHiddenPosts();
-  }
-  console.log(hiddenPosts);
 
   return (
     <div className="min-h-[calc(100svh-68px)]">
@@ -37,19 +29,6 @@ export default async function Page() {
               </div>
             )}
           </div>
-        </div>
-        <div className="mt-4">
-          {prismaUser.isAdmin &&
-            hiddenPosts.success &&
-            hiddenPosts?.hiddenPosts?.length > 0 &&
-            hiddenPosts?.hiddenPosts?.map((item) => (
-              <PostPage
-                key={item.id}
-                prismaUser={prismaUser}
-                post={item}
-                displayComments={false}
-              />
-            ))}
         </div>
       </div>
     </div>
