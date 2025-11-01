@@ -18,17 +18,12 @@ export default function HasSeenPopUp() {
     const hasSeenPopup = localStorage.getItem("hasSeenPopup");
     if (!hasSeenPopup) {
       setShowPopup(true);
-    }
-  }, []);
-  const handleClose = (open) => {
-    setShowPopup(open);
-    if (!open) {
       localStorage.setItem("hasSeenPopup", "true");
     }
-  };
+  }, []);
 
   return (
-    <Dialog open={showPopup} onOpenChange={handleClose}>
+    <Dialog open={showPopup} onOpenChange={setShowPopup}>
       <DialogContent className="w-[90%] max-w-[350px] sm:w-[350px]">
         <DialogHeader>
           <DialogTitle>Welcome User 👋</DialogTitle>
