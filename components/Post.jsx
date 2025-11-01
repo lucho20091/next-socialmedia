@@ -1,3 +1,6 @@
+"use client";
+import AOS from "aos";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CgComment } from "react-icons/cg";
@@ -22,10 +25,15 @@ export default function PostPage({
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
     return dateFns.replace(/^about\s/, "");
   }
+  useEffect(() => {
+    AOS.refresh(); // make sure it recalculates after hydration
+  }, []);
   return (
     <div
       key={post.id}
-      className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-neutral-950  transition-colors"
+      className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-[oklch(16.5%_0_0)] transition-colors"
+      data-aos="zoom-in-left"
+      suppressHydrationWarning
     >
       {/* post header */}
       <div className="flex items-start space-x-3">

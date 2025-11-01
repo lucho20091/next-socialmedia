@@ -35,17 +35,21 @@ export default async function Home() {
   const getAllPosts = await readMainPosts();
 
   return (
-    <div className="min-h-[calc(100svh-68px)]">
+    <div className="min-h-[calc(100svh-68px)]" suppressHydrationWarning>
       {prismaUser && (
-        <div className="flex justify-center items-start">
+        <div
+          className="flex justify-center items-start overflow-hidden"
+          data-aos="zoom-out"
+          suppressHydrationWarning
+        >
           <div className="w-full max-w-2xl">
-            <div className="flex items-start px-4 py-6 sm:p-8 gap-2">
+            <div className="flex items-start px-4 py-6 sm:py-8 gap-2">
               <Image
                 src={prismaUser.avatar || "/default-profile.jpg"}
                 alt="Profile"
                 width={40}
                 height={40}
-                className="object-cover rounded-full border-2 border-gray-800 w-11 h-11 shadow-xl dark:shadow-gray-900"
+                className="object-cover rounded-full border-2 border-gray-800 w-10 h-10 shadow-xl dark:shadow-gray-900"
               />
 
               <CreatePost />

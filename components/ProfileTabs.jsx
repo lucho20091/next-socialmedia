@@ -22,6 +22,9 @@ export default function ProfileTabs({
   const TabButton = ({ id, label }) => (
     <button
       onClick={() => setTab(id)}
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      suppressHydrationWarning
       className={[
         "py-2 cursor-pointer",
         tab === id

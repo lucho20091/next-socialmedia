@@ -1,3 +1,5 @@
+import "aos/dist/aos.css";
+import AOSInitializer from "@/components/AOSInitializer";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "../stack/client";
@@ -29,11 +31,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-neutral-950 `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-neutral-950 overflow-x-hidden`}
       >
         <StackProvider app={stackClientApp}>
           <StackTheme>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <AOSInitializer />
               <Navbar />
               <HasSeenPopUp />
               {children}
