@@ -54,7 +54,10 @@ export default function PostPage({
           </div>
         </div>
         <div className="ml-auto flex gap-2">
-          {prismaUser && prismaUser?.isAdmin && <HidePostPage id={post.id} />}
+          {prismaUser &&
+            (prismaUser?.isAdmin || post.author.id === prismaUser.id) && (
+              <HidePostPage id={post.id} />
+            )}
           {prismaUser &&
             (post.author.id === prismaUser.id ||
               prismaUser.isAdmin === true) && (

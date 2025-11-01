@@ -6,7 +6,7 @@ import LogoutButton from "./LogOut";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { FaRegEyeSlash } from "react-icons/fa6";
-
+import HasSeenPopUp from "./HasSeenPopUp";
 export default async function Navbar() {
   const user = await stackServerApp.getUser();
   let prismaUser;
@@ -23,13 +23,16 @@ export default async function Navbar() {
           S<span className="text-blue-500 font-bold">Media</span>
         </Link>
         <div className="flex items-center justify-center gap-2  sm:gap-4">
-          {prismaUser && prismaUser.isAdmin && (
-            <Link
-              href="/hidden"
-              className="w-10 h-10 grid place-items-center bg-black rounded-full border-2 border-gray-500"
-            >
-              <FaRegEyeSlash className="text-white" />
-            </Link>
+          <HasSeenPopUp />
+          {prismaUser && (
+            <div className="flex gap-2 sm:gap-4">
+              <Link
+                href="/hidden"
+                className="w-10 h-10 grid place-items-center bg-black rounded-full border-2 border-gray-500"
+              >
+                <FaRegEyeSlash className="text-white" />
+              </Link>
+            </div>
           )}
           <ThemeToggle />
           {user ? (

@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
+import HasSeenPopUp from "@/components/HasSeenPopUp";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,6 +35,7 @@ export default function RootLayout({ children }) {
           <StackTheme>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Navbar />
+              <HasSeenPopUp />
               {children}
             </ThemeProvider>
           </StackTheme>

@@ -11,6 +11,7 @@ export default function CreatePostPage() {
   const [selectedPreview, setSelectedPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const router = useRouter();
   const fileInputRef = useRef(null);
   function handleFileUpload(e) {
@@ -69,7 +70,7 @@ export default function CreatePostPage() {
         const data = await response.json();
         mediaUrl = data.secure_url;
       }
-      const result = await createPost(content.trim(), mediaUrl);
+      const result = await createPost(content.trim(), mediaUrl, isHidden);
 
       if (result.success) {
         setContent("");
@@ -101,31 +102,42 @@ export default function CreatePostPage() {
           />
 
           <div className="flex items-center justify-between mt-3">
-            <div className="flex items-center space-x-4">
-              <label className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="flex items-center space-x-4">
+                <label className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <input
+                    type="file"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                    accept="image/*,video/*"
+                    ref={fileInputRef}
                   />
-                </svg>
-                <input
-                  type="file"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                  accept="image/*,video/*"
-                  ref={fileInputRef}
-                />
-              </label>
+                </label>
+              </div>
+              <div className="flex items-center space-x-3">
+                <select
+                  value={isHidden ? "true" : "false"}
+                  onChange={(e) => setIsHidden(e.target.value === "true")}
+                  className="bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1 text-sm"
+                >
+                  <option value="false">Public</option>
+                  <option value="true">Hidden</option>
+                </select>
+              </div>
             </div>
-
             <button
               type="submit"
               disabled={!content.trim() || isLoading}

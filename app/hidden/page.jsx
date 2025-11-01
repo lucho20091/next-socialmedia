@@ -9,14 +9,12 @@ export default async function page() {
   if (user?.primaryEmail) {
     prismaUser = await getUserByEmail(user.primaryEmail);
   }
-  let hiddenPosts;
-  if (prismaUser.isAdmin) {
-    hiddenPosts = await readHiddenPosts();
-  }
+  const hiddenPosts = await readHiddenPosts();
+
   return (
     <div className="min-h-[calc(100svh-68px)]">
-      <div className="max-w-3xl mx-auto py-4 sm:p-6">
-        {prismaUser.isAdmin &&
+      <div className="max-w-2xl mx-auto">
+        {prismaUser &&
           hiddenPosts.success &&
           hiddenPosts?.hiddenPosts?.length > 0 &&
           hiddenPosts?.hiddenPosts?.map((item) => (
