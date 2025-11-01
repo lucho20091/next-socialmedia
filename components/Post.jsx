@@ -1,6 +1,6 @@
 "use client";
-import AOS from "aos";
 import { useEffect } from "react";
+import AOS from "aos";
 import Image from "next/image";
 import Link from "next/link";
 import { CgComment } from "react-icons/cg";
@@ -27,7 +27,13 @@ export default function PostPage({
     return dateFns.replace(/^about\s/, "");
   }
   useEffect(() => {
-    AOS.refresh(); // make sure it recalculates after hydration
+    AOS.init({
+      duration: 800,
+      once: false,
+      easing: "ease-out-cubic",
+      mirror: true,
+      disable: () => window.innerWidth < 1300,
+    });
   }, []);
 
   const delay = index > 10 ? 1000 : index * 100;

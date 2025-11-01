@@ -37,11 +37,7 @@ export default async function Home() {
   return (
     <div className="min-h-[calc(100svh-68px)]" suppressHydrationWarning>
       {prismaUser && (
-        <div
-          className="flex justify-center items-start overflow-hidden"
-          data-aos="zoom-out"
-          suppressHydrationWarning
-        >
+        <div className="flex justify-center items-start overflow-hidden">
           <div className="w-full max-w-2xl">
             <div className="flex items-start px-4 py-6 sm:py-8 gap-2">
               <Image

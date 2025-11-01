@@ -1,5 +1,4 @@
 import "aos/dist/aos.css";
-import AOSInitializer from "@/components/AOSInitializer";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "../stack/client";
@@ -36,7 +35,6 @@ export default function RootLayout({ children }) {
         <StackProvider app={stackClientApp}>
           <StackTheme>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <AOSInitializer />
               <Navbar />
               <HasSeenPopUp />
               {children}
