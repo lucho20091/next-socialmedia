@@ -24,8 +24,6 @@ export default function CommentPage({ postId }) {
     <form
       className="flex flex-wrap items-center space-x-2 mb-2 "
       onSubmit={handleSubmit}
-      data-aos="fade-left"
-      suppressHydrationWarning
     >
       <input
         type="text"

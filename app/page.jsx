@@ -60,12 +60,13 @@ export default async function Home() {
       <div className="max-w-2xl mx-auto">
         {getAllPosts &&
           getAllPosts.length > 0 &&
-          getAllPosts.map((item) => (
+          getAllPosts.map((item, index) => (
             <PostPage
               key={item.id}
               post={item}
               prismaUser={prismaUser}
               homePage={true}
+              index={index}
             />
           ))}
       </div>

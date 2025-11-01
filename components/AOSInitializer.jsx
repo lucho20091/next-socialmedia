@@ -7,8 +7,9 @@ export default function AOSInitializer() {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: true,
+      once: false,
       easing: "ease-out-cubic",
+      mirror: true,
     });
   }, []);
 

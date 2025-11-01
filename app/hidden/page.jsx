@@ -17,12 +17,13 @@ export default async function page() {
         {prismaUser &&
           hiddenPosts.success &&
           hiddenPosts?.hiddenPosts?.length > 0 &&
-          hiddenPosts?.hiddenPosts?.map((item) => (
+          hiddenPosts?.hiddenPosts?.map((item, index) => (
             <PostPage
               key={item.id}
               prismaUser={prismaUser}
               post={item}
               displayComments={false}
+              index={index}
             />
           ))}
       </div>

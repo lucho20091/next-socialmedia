@@ -20,6 +20,7 @@ export default function PostPage({
   prismaUser,
   displayComments = true,
   homePage = false,
+  index = 1,
 }) {
   function formatDate(date) {
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
@@ -28,11 +29,18 @@ export default function PostPage({
   useEffect(() => {
     AOS.refresh(); // make sure it recalculates after hydration
   }, []);
+
+  const delay = index > 10 ? 1000 : index * 100;
+  const duration = index < 3 ? 500 + index * 200 : 1100;
+
+  console.log(delay);
   return (
     <div
       key={post.id}
       className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-[oklch(16.5%_0_0)] transition-colors"
       data-aos="zoom-in-left"
+      data-aos-delay={delay}
+      data-aos-duration={duration}
       suppressHydrationWarning
     >
       {/* post header */}
