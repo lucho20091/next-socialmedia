@@ -36,7 +36,10 @@ export default function LikePost({ postId, currentLikes, userId }) {
     <>
       <button className="cursor-pointer" onClick={handleLike}>
         {userHasLiked ? (
-          <BiSolidLike size="25px" className="text-blue-500" />
+          <BiSolidLike
+            size="25px"
+            className="text-blue-500 dark:text-blue-800"
+          />
         ) : (
           <BiLike size="25px" className="dark:text-gray-400" />
         )}
@@ -44,10 +47,10 @@ export default function LikePost({ postId, currentLikes, userId }) {
       {likes.length > 0 && (
         <span
           onClick={handleLike}
-          className={` cursor-pointer
+          className={`cursor-pointer select-none
             ${
               userHasLiked
-                ? "text-blue-500 font-semibold"
+                ? "text-blue-500 dark:text-blue-800 font-semibold"
                 : "text-gray-500 dark:text-gray-400"
             }
           `}

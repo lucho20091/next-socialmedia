@@ -39,7 +39,6 @@ export default function PostPage({
   const delay = index > 10 ? 1000 : index * 100;
   const duration = index < 3 ? 500 + index * 200 : 1100;
 
-  console.log(delay);
   return (
     <div
       key={post.id}
@@ -57,7 +56,16 @@ export default function PostPage({
             width={40}
             height={40}
             alt={`${post.author.username} avatar`}
-            className="rounded-full border-2 border-blue-500 shadow-md w-10 h-10 object-cover dark:shadow-blue-900"
+            className=" w-10 h-10 
+      rounded-full 
+      cursor-pointer
+      transition-all duration-300 
+      bg-gray-100 dark:bg-neutral-900 
+      border border-gray-400 dark:border-neutral-700 
+      shadow-md shadow-black/40 
+      hover:scale-105 hover:shadow-lg 
+      hover:border-indigo-500/60 
+      dark:hover:border-indigo-400/60"
           />
         </Link>
         <div className="flex-1 min-w-0">

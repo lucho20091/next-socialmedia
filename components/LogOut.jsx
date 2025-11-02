@@ -27,7 +27,20 @@ export default function LogoutButton() {
       <DialogTrigger asChild>
         <Button
           variant="destructive"
-          className="cursor-pointer rounded-full sm:rounded-2xl w-10 h-10 sm:w-auto border-2 dark:border-red-400 border-red-900 sm:border-0"
+          className="
+    cursor-pointer 
+    flex items-center justify-center gap-2 
+    rounded-full sm:rounded-xl 
+    w-10 h-10 sm:w-auto sm:px-3
+    border-2 border-transparent dark:border-red-400/60 
+    bg-red-600 hover:bg-red-700 
+    dark:bg-red-900 dark:hover:bg-red-800 
+    text-gray-300
+    transition-all duration-200 
+    hover:scale-[1.03]
+    shadow-md hover:shadow-lg 
+    shadow-red-900/40 dark:shadow-red-950/50
+  "
         >
           <span className="hidden sm:inline">Log out</span>
           <div className="sm:hidden">
