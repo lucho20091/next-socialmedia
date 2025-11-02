@@ -9,7 +9,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-[calc(100svh-68px)]">
+    <div className="min-h-[calc(100svh-100px)]">
       <div className="max-w-3xl mx-auto py-4 sm:p-6">
         <div className="bg-white rounded-xl shadow-md p-6 mx-4 dark:bg-neutral-900">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-400">

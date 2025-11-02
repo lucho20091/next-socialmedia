@@ -14,7 +14,7 @@ export default async function page({ params }) {
   const profileUser = await getFullUserById(id);
   console.log(profileUser);
   return (
-    <div className="min-h-[calc(100svh-68px)]">
+    <div className="min-h-[calc(100svh-100px)]">
       <div className="max-w-3xl mx-auto py-4 sm:p-6">
         <div className="bg-white rounded-xl mx-4 shadow-md p-6 flex items-start gap-4 dark:bg-neutral-900 shadow-md dark:shadow-gray-800">
           <img

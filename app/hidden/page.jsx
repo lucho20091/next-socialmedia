@@ -12,7 +12,7 @@ export default async function page() {
   const hiddenPosts = await readHiddenPosts();
 
   return (
-    <div className="min-h-[calc(100svh-68px)]">
+    <div className="min-h-[calc(100svh-100px)]">
       <div className="max-w-2xl mx-auto">
         {prismaUser &&
           hiddenPosts.success &&
