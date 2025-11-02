@@ -44,7 +44,7 @@ export default function HidePostPage({ id }) {
     cursor-pointer 
     transition-all duration-300 
     bg-gray-100 dark:bg-neutral-900 
-    border border-gray-400 dark:border-neutral-700 
+    border border-gray-400 dark:border-gray-300
     text-gray-700 dark:text-gray-400 
     shadow-md shadow-black/40 
     hover:scale-105 hover:shadow-lg 
