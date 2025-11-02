@@ -181,7 +181,16 @@ export default function PostPage({
                         width={40}
                         height={40}
                         alt="Profile"
-                        className="rounded-full border-2 border-blue-500 shadow-xl object-cover w-10 h-10"
+                        className="w-10 h-10 
+      rounded-full 
+      cursor-pointer
+      transition-all duration-300 
+      bg-gray-100 dark:bg-neutral-900 
+      border border-gray-400 dark:border-neutral-700 
+      shadow-md shadow-black/40 
+      hover:scale-105 hover:shadow-lg 
+      hover:border-indigo-500/60 
+      dark:hover:border-indigo-400/60"
                       />
                     </Link>
                     <div className="flex-1">
