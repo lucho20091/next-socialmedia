@@ -44,8 +44,23 @@ export default function UpdateCommentPage({
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="cursor-pointer border-1 border-black dark:border-gray-400">
-        <BiEdit size="20px" className="dark:text-gray-400" />
+      <DialogTrigger
+        className="
+    w-7 h-7 sm:w-8 sm:h-8
+    grid place-items-center 
+    rounded-full 
+    cursor-pointer 
+    transition-all duration-300 
+    bg-gray-100 dark:bg-neutral-900 
+    border border-gray-400 dark:border-neutral-700 
+    text-gray-700 dark:text-gray-300 
+    shadow-sm shadow-black/30 
+    hover:scale-105 hover:shadow-md 
+    hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
+    hover:text-indigo-500 dark:hover:text-indigo-300
+  "
+      >
+        <BiEdit size={16} className="sm:size-[18px] text-inherit" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

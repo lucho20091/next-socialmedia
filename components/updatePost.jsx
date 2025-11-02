@@ -44,8 +44,21 @@ export default function updatePostPage({
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="cursor-pointer border-1 border-black dark:border-gray-400">
-        <BiEdit size="25px" className="dark:text-gray-400" />
+      <DialogTrigger
+        className=" w-8 h-8 sm:w-10 sm:h-10
+    grid place-items-center 
+    rounded-full 
+    cursor-pointer 
+    transition-all duration-300 
+    bg-gray-100 dark:bg-neutral-900 
+    border border-gray-400 dark:border-neutral-700 
+    text-gray-700 dark:text-gray-300 
+    shadow-md shadow-black/40 
+    hover:scale-105 hover:shadow-lg 
+    hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
+    hover:text-indigo-500 dark:hover:text-indigo-300"
+      >
+        <BiEdit size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

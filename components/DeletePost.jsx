@@ -35,11 +35,23 @@ export default function DeletePostPage({ id }) {
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="cursor-pointer border-1 border-red-500 dark:border-red-500/60">
-        <AiOutlineDelete
-          className="text-red-500 dark:text-red-500/60"
-          size="25px"
-        />
+      <DialogTrigger
+        className="
+    w-8 h-8 sm:w-10 sm:h-10
+    grid place-items-center 
+    rounded-full 
+    cursor-pointer 
+    transition-all duration-300 
+    bg-gray-100 dark:bg-neutral-900 
+     border border-red-400/70 dark:border-red-500/60 
+     text-red-600 dark:text-red-500/70 
+    shadow-md shadow-black/40 
+    hover:scale-105 hover:shadow-lg 
+    hover:border-red-500/60 dark:hover:border-red-400/60 
+    hover:text-red-500 dark:hover:text-red-300
+  "
+      >
+        <AiOutlineDelete size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>
