@@ -28,14 +28,13 @@ export default function HasSeenPopUp() {
         <DialogHeader>
           <DialogTitle>Welcome User 👋</DialogTitle>
           <DialogDescription className="space-y-2 text-base text-gray-700 dark:text-gray-300">
-            This site lets you upload and share your favorite edits.
+            Upload and share your favorite videos.
           </DialogDescription>
         </DialogHeader>
         <div>
           <ul className="list-disc pl-5 space-y-1">
             <li>Sign in to start uploading</li>
             <li>Create and customize your profile</li>
-            <li>Upload a profile image or change your username</li>
             <li>
               Post videos or images — choose to make them public or hidden
             </li>
@@ -52,7 +51,7 @@ export default function HasSeenPopUp() {
                 localStorage.setItem("hasSeenPopup", "true");
               }}
             >
-              Understood
+              Got it
             </Button>
           </DialogClose>
         </DialogFooter>
