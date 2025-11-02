@@ -31,16 +31,17 @@ export default function LogoutButton() {
     cursor-pointer 
     flex items-center justify-center gap-2 
     rounded-full sm:rounded-xl 
-    w-10 h-10 sm:w-auto sm:px-3
-    border-2 border-transparent dark:border-red-400/60 
-    bg-red-600 hover:bg-red-700 
-    dark:bg-red-900 dark:hover:bg-red-800 
-    text-gray-300
-    transition-all duration-200 
-    hover:scale-[1.03]
-    shadow-md hover:shadow-lg 
-    shadow-red-900/40 dark:shadow-red-950/50
+    w-10 h-10 sm:w-auto sm:px-4 
+    transition-all duration-300 
+    bg-gray-100 dark:bg-neutral-900 
+    border border-gray-400 dark:border-neutral-700 
+    text-gray-800 dark:text-gray-300 
+    shadow-md shadow-black/40 
+    hover:scale-105 hover:shadow-lg 
+    hover:border-red-500/60 dark:hover:border-red-400/60 
+    hover:text-red-600 dark:hover:text-red-400
   "
+          suppressHydrationWarning
         >
           <span className="hidden sm:inline">Log out</span>
           <div className="sm:hidden">
