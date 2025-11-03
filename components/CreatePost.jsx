@@ -1,18 +1,17 @@
 "use client";
 import { useState, useRef } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 import { createPost } from "@/lib/actions/post";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
-export default function CreatePostPage() {
+export default function CreatePostPage({ isAdmin = false }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [content, setContent] = useState("");
   const [selectedPreview, setSelectedPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const router = useRouter();
+
   const fileInputRef = useRef(null);
   function handleFileUpload(e) {
     const file = e.target.files[0];
@@ -24,22 +23,12 @@ export default function CreatePostPage() {
     const isVideo = validVideoTypes.includes(file.type);
 
     if (!isImage && !isVideo) {
-      toast.error("Only images or videos are allowed", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      showToast("Only images or videos are allowed", "error");
       return;
     }
 
     if (file.size > 1024 * 1024 * 40) {
-      toast.error("Media size must be less than 40MB", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      showToast("Media size must be less than 40MB", "error");
       return;
     }
 
@@ -83,12 +72,7 @@ export default function CreatePostPage() {
           }
         );
         if (!response.ok) {
-          toast.error("Unable to Add Media", {
-            style: {
-              background: "#333",
-              color: "#fff",
-            },
-          });
+          showToast("Unable to Add Media", "error");
         }
         const data = await response.json();
         mediaUrl = data.secure_url;
@@ -100,24 +84,12 @@ export default function CreatePostPage() {
         setSelectedFile(null);
         setSelectedPreview(null);
 
-        toast("Created Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Created Post");
       } else {
-        toast.error("Post Failed", {
-          style: {
-            background: "#333",
-            color: "#fff",
-          },
-        });
+        showToast("Post Failed");
       }
     } catch (e) {
-      toast.error("Post Failed", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      showToast("Post Failed");
     } finally {
       setIsLoading(false);
     }
@@ -163,16 +135,18 @@ export default function CreatePostPage() {
                   />
                 </label>
               </div>
-              <div className="flex items-center space-x-3">
-                <select
-                  value={isHidden ? "true" : "false"}
-                  onChange={(e) => setIsHidden(e.target.value === "true")}
-                  className="bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1 text-sm"
-                >
-                  <option value="false">Public</option>
-                  <option value="true">Hidden</option>
-                </select>
-              </div>
+              {isAdmin && (
+                <div className="flex items-center space-x-3">
+                  <select
+                    value={isHidden ? "true" : "false"}
+                    onChange={(e) => setIsHidden(e.target.value === "true")}
+                    className="bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1 text-sm"
+                  >
+                    <option value="false">Public</option>
+                    <option value="true">Hidden</option>
+                  </select>
+                </div>
+              )}
             </div>
             <button
               type="submit"

@@ -9,9 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 export default function DeleteCommentPage({ commentId }) {
   const [open, setOpen] = useState(false);
   async function handleSubmit(e) {
@@ -19,18 +19,11 @@ export default function DeleteCommentPage({ commentId }) {
     try {
       const result = await deleteComment(commentId);
       if (result.success) {
-        toast("Comment Deleted", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Comment Deleted");
         setOpen(false);
       }
     } catch (e) {
-      toast.error("Failed to Delete Comment", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      showToast("Failed to Delete Comment", "error");
     }
   }
   return (

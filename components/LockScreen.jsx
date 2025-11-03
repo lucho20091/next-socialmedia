@@ -1,7 +1,7 @@
 "use client";
 import { FaLock } from "react-icons/fa6";
 import { FaUnlock } from "react-icons/fa";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -10,7 +10,7 @@ export default function LockScreen() {
   const buttonRef = useRef(null);
   useEffect(() => {
     if (locked) {
-      toast("Screen Locked", { style: { background: "#333", color: "#fff" } });
+      showToast("Screen Locked");
       document.body.style.pointerEvents = "none";
       document.body.style.overflow = "hidden"; // 🔒 Prevent scrolling
       document.body.style.userSelect = "none";

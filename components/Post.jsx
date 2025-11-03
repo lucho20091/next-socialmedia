@@ -92,10 +92,9 @@ export default function PostPage({
             post.author.id === prismaUser.id && (
               <ProtectPostPage id={post.id} isProtected={post.isProtected} />
             )}
-          {prismaUser &&
-            (prismaUser?.isAdmin || post.author.id === prismaUser.id) && (
-              <HidePostPage id={post.id} />
-            )}
+          {prismaUser && prismaUser?.isAdmin && (
+            <HidePostPage id={post.id} isHidden={post.isHidden} />
+          )}
           {prismaUser &&
             (post.author.id === prismaUser.id ||
               prismaUser.isAdmin === true) && (

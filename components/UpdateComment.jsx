@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { updateComment } from "@/lib/actions/comment";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 import Image from "next/image";
 export default function UpdateCommentPage({
   id,
@@ -33,19 +33,13 @@ export default function UpdateCommentPage({
     try {
       const result = await updateComment(id, content.trim());
       if (result.success) {
-        toast("Comment Updated", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Comment Updated");
         setOpen(false);
       } else {
-        toast.error("Failed to Update Comment", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Update Comment", "error");
       }
     } catch (e) {
-      toast.error("Failed to Update Comment", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Failed to Update Comment", "error");
     }
   }
   return (

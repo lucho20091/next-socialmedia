@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 export default function ProtectPostPage({ id, isProtected }) {
   const [open, setOpen] = useState(false);
 
@@ -23,19 +23,15 @@ export default function ProtectPostPage({ id, isProtected }) {
       console.log(id);
       const result = await protectPost(id);
       if (result.success) {
-        toast("Protect Post Toggled", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast(
+          `${result.updatedPost.isProtected ? "Protected" : "Unprotected"} Post`
+        );
         setOpen(false);
       } else {
-        toast.error("Failed to Protect Post Toggle", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Toggle", "error");
       }
     } catch (e) {
-      toast.error("Failed to Protect Post Toggle", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Failed to Toggle", "error");
     }
   }
   return (
@@ -61,19 +57,18 @@ export default function ProtectPostPage({ id, isProtected }) {
         ) : (
           <IoShieldOutline />
         )}
-        {/* <MdHideSource size={18} className="sm:size-[20px] text-inherit" /> */}
       </DialogTrigger>
 
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            This will toggle protect this post.
+            This will {isProtected ? "Unprotect" : "Protect"} this post.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
           <Button type="submit" className="cursor-pointer">
-            Toggle Protect Post
+            {isProtected ? "Unprotect" : "Protect"} Post
           </Button>
         </form>
       </DialogContent>

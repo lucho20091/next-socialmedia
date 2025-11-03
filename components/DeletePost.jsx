@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useRouter, usePathname } from "next/navigation";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 export default function DeletePostPage({ id }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -22,23 +22,17 @@ export default function DeletePostPage({ id }) {
     try {
       const result = await deletePost(id);
       if (result.success) {
-        toast("Post Deleted", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Post Deleted");
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
           router.back();
         }
       } else {
-        toast.error("Failed to Delete Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Delete Post");
       }
     } catch (e) {
-      toast.error("Failed to Delete Post", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Failed to Delete Post");
     }
   }
   return (

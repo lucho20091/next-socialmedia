@@ -48,7 +48,7 @@ export default async function Home() {
                 className="object-cover rounded-full border-2 border-gray-800 w-10 h-10 shadow-xl dark:shadow-gray-900"
               />
 
-              <CreatePost />
+              <CreatePost isAdmin={prismaUser.isAdmin} />
             </div>
           </div>
         </div>

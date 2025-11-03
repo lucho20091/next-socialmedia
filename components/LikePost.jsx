@@ -4,7 +4,7 @@ import { BiSolidLike } from "react-icons/bi";
 import PeopleLiked from "./PeopleLiked";
 import { likePost, dislikePost } from "@/lib/actions/post";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 export default function LikePost({ postId, currentLikes, userId }) {
   const [likes, setLikes] = useState(currentLikes);
   const userHasLiked = likes.some((like) => like.id === userId);
@@ -13,32 +13,22 @@ export default function LikePost({ postId, currentLikes, userId }) {
     if (userHasLiked) {
       const response = await dislikePost(postId);
       if (response.success) {
-        toast("Disliked Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Disliked Post");
         setLikes((prev) => prev.filter((like) => like.id !== userId));
       } else {
-        toast.error("Failed to Dislike Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Dislike Post", "error");
       }
     } else {
       if (!userId) {
-        toast.error("Sign-in to Like Posts", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Sign-in to Like Posts", "error");
         return;
       }
       const response = await likePost(postId);
       if (response.success) {
-        toast("Liked Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Liked Post");
         setLikes((prev) => [...prev, { id: userId }]);
       } else {
-        toast.error("Failed to Like Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Like Post", "error");
       }
     }
   }

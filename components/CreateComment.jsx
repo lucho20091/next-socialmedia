@@ -1,7 +1,7 @@
 "use client";
 import { createComment } from "@/lib/actions/comment";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 export default function CommentPage({ postId }) {
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -12,17 +12,12 @@ export default function CommentPage({ postId }) {
       const result = await createComment(content, postId);
       if (result.success) {
         setContent("");
-        toast("Comment Posted", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Comment Posted");
+      } else {
+        showToast("Comment Failed", "error");
       }
     } catch (e) {
-      toast.error("Comment Failed", {
-        style: {
-          background: "#333",
-          color: "#fff",
-        },
-      });
+      showToast("Comment Failed", "error");
     } finally {
       setIsLoading(false);
     }

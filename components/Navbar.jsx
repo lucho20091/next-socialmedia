@@ -35,7 +35,7 @@ export default async function Navbar() {
         </Link>
         <div className="flex items-center justify-center gap-2  sm:gap-4">
           <HasSeenPopUp />
-          {prismaUser && (
+          {prismaUser && prismaUser.isAdmin && (
             <div className="flex gap-2 sm:gap-4">
               <Link
                 href="/hidden"

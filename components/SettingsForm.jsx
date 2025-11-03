@@ -3,9 +3,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import toast from "react-hot-toast";
 import { updateUser } from "@/lib/actions/user";
-
+import { showToast } from "@/lib/utils/toast";
 export default function SettingsForm({
   userId,
   initialUsername,
@@ -22,15 +21,11 @@ export default function SettingsForm({
     const file = e.target.files?.[0];
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      toast.error("Please Select an Image File", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Please Select an Image File", "error");
       return;
     }
     if (file.size > 5 * 1024 * 1024) {
-      toast.error("Image Size Must be Less Than 5MB", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Image Size Must be Less than 5MB");
       return;
     }
     setSelectedFile(file);
@@ -71,18 +66,12 @@ export default function SettingsForm({
         avatar: avatarUrl || undefined,
       });
       if (!res) {
-        toast.error("Failed to Update Profile", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Update Profile", "error");
         return;
       }
-      toast("Profile Updated", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Profile Updated");
     } catch (err) {
-      toast("Could not Save Settings", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Could not Save Settings", "error");
     } finally {
       setIsSaving(false);
     }

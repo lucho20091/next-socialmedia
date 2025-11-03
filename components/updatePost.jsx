@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { updatePost } from "@/lib/actions/post";
-import toast from "react-hot-toast";
+import { showToast } from "@/lib/utils/toast";
 import Image from "next/image";
 export default function updatePostPage({
   id,
@@ -33,19 +33,13 @@ export default function updatePostPage({
     try {
       const result = await updatePost(id, content.trim());
       if (result.success) {
-        toast("Post Updated", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Post Updated");
         setOpen(false);
       } else {
-        toast.error("Failed to Update Post", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Update Post", "error");
       }
     } catch (e) {
-      toast.error("Failed to Update Post", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Failed to Update Post", "error");
     }
   }
   return (

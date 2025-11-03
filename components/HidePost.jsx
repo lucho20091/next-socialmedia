@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
 import { useRouter, usePathname } from "next/navigation";
 import toast from "react-hot-toast";
-export default function HidePostPage({ id }) {
+import { showToast } from "@/lib/utils/toast";
+export default function HidePostPage({ id, isHidden }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -23,23 +23,20 @@ export default function HidePostPage({ id }) {
     try {
       const result = await hidePost(id);
       if (result.success) {
-        toast("Post Visibility Toggled", {
-          style: { background: "#333", color: "#fff" },
-        });
+        console.log(result.updatedPost.isHidden);
+        showToast(
+          `${result.updatedPost.isHidden ? "Hidden" : "Unhidden"} Post`
+        );
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
           router.back();
         }
       } else {
-        toast.error("Failed to Toggle Visibility", {
-          style: { background: "#333", color: "#fff" },
-        });
+        showToast("Failed to Toggle Visibility", "error");
       }
     } catch (e) {
-      toast.error("Failed to Toggle Visibility", {
-        style: { background: "#333", color: "#fff" },
-      });
+      showToast("Failed to Toggle Visibility", "error");
     }
   }
   return (
@@ -65,14 +62,14 @@ export default function HidePostPage({ id }) {
 
       <DialogContent className="w-[90%] max-w-[300px] sm:w-[300px]">
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            This will toggle hide this post.
+            This will {isHidden ? "Unhide" : "Hide"} this post.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
           <Button type="submit" className="cursor-pointer">
-            Toggle hide
+            {isHidden ? "Unhide" : "Hide"} Post
           </Button>
         </form>
       </DialogContent>
