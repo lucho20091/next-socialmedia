@@ -35,7 +35,7 @@ export default function LockScreen() {
 
   return (
     <>
-      <div className="absolute top-5 right-5 z-50">
+      <div className="absolute top-5 right-5">
         <button
           ref={buttonRef}
           onClick={() => setLocked(!locked)}

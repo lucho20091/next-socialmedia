@@ -27,8 +27,8 @@ export default function CreatePostPage({ isAdmin = false }) {
       return;
     }
 
-    if (file.size > 1024 * 1024 * 40) {
-      showToast("Media size must be less than 40MB", "error");
+    if (file.size > 1024 * 1024 * 100) {
+      showToast("Media size must be less than 100MB", "error");
       return;
     }
 
