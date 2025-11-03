@@ -13,6 +13,7 @@ export default function LockScreen() {
       toast("Screen Locked", { style: { background: "#333", color: "#fff" } });
       document.body.style.pointerEvents = "none";
       document.body.style.overflow = "hidden"; // 🔒 Prevent scrolling
+      document.body.style.userSelect = "none";
 
       // Re-enable pointer events only on this button
       if (buttonRef.current) {
@@ -21,12 +22,14 @@ export default function LockScreen() {
     } else {
       document.body.style.pointerEvents = "auto";
       document.body.style.overflow = "auto"; // ✅ Restore scrolling
+      document.body.style.userSelect = "auto"; // ✅ Allow text selection again
     }
 
     // Cleanup on unmount
     return () => {
       document.body.style.pointerEvents = "auto";
       document.body.style.overflow = "auto";
+      document.body.style.userSelect = "auto";
     };
   }, [locked]);
 
