@@ -1,7 +1,7 @@
 "use client";
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
-
+import PeopleLiked from "./PeopleLiked";
 import { likePost, dislikePost } from "@/lib/actions/post";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -55,18 +55,7 @@ export default function LikePost({ postId, currentLikes, userId }) {
         )}
       </button>
       {likes.length > 0 && (
-        <span
-          onClick={handleLike}
-          className={`cursor-pointer select-none
-            ${
-              userHasLiked
-                ? "text-blue-500 dark:text-blue-800 font-semibold"
-                : "text-gray-500 dark:text-gray-400"
-            }
-          `}
-        >
-          {likes.length} {likes.length === 1 ? "like" : "likes"}
-        </span>
+        <PeopleLiked userHasLiked={userHasLiked} likes={likes} />
       )}
     </>
   );
