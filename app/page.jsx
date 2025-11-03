@@ -53,7 +53,7 @@ export default async function Home() {
           </div>
         </div>
       )}
-      <div className="max-w-2xl mx-auto py-6 sm:py-8">
+      <div className="max-w-2xl mx-auto">
         {getAllPosts &&
           getAllPosts.length > 0 &&
           getAllPosts.map((item, index) => (
