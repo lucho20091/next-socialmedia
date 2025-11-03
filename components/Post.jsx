@@ -15,6 +15,8 @@ import UpdatePostPage from "@/components/updatePost";
 import DeletePostPage from "@/components/DeletePost";
 import HidePostPage from "./HidePost";
 import { formatDistanceToNow } from "date-fns";
+
+import LockScreen from "./LockScreen";
 export default function PostPage({
   post,
   prismaUser,
@@ -125,13 +127,14 @@ export default function PostPage({
       )}
       {/* post video */}
       {post.mediaUrl && post.mediaUrl.endsWith(".mp4") && (
-        <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
+        <div className="sm:ml-13 mb-4 rounded-2xl bg-black relative">
           <video
             src={post.mediaUrl}
             className="w-full h-auto max-h-[600px] object-contain"
             controls
             loop
           />
+          <LockScreen />
         </div>
       )}
       {/* post actions */}
