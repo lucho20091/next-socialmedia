@@ -25,7 +25,6 @@ export default function DeletePostPage({ id }) {
         showToast("Post Deleted");
         setOpen(false);
         if (pathname.startsWith("/post/")) {
-          console.log(pathname);
           router.back();
         }
       } else {

@@ -20,7 +20,6 @@ export default function ProtectPostPage({ id, isProtected }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      console.log(id);
       const result = await protectPost(id);
       if (result.success) {
         showToast(

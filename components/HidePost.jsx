@@ -12,7 +12,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import toast from "react-hot-toast";
 import { showToast } from "@/lib/utils/toast";
 export default function HidePostPage({ id, isHidden }) {
   const [open, setOpen] = useState(false);
@@ -23,7 +22,6 @@ export default function HidePostPage({ id, isHidden }) {
     try {
       const result = await hidePost(id);
       if (result.success) {
-        console.log(result.updatedPost.isHidden);
         showToast(
           `${result.updatedPost.isHidden ? "Hidden" : "Unhidden"} Post`
         );

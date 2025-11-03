@@ -12,7 +12,6 @@ export default async function page({ params }) {
     prismaUser = await getUserByEmail(user.primaryEmail);
   }
   const profileUser = await getFullUserById(id);
-  console.log(profileUser);
   return (
     <div className="min-h-[calc(100svh-100px)]">
       <div className="max-w-2xl mx-auto py-6 sm:py-8">
