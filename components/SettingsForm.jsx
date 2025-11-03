@@ -22,11 +22,15 @@ export default function SettingsForm({
     const file = e.target.files?.[0];
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      toast.error("Please select an image file");
+      toast.error("Please Select an Image File", {
+        style: { background: "#333", color: "#fff" },
+      });
       return;
     }
     if (file.size > 5 * 1024 * 1024) {
-      toast.error("Image size must be less than 5MB");
+      toast.error("Image Size Must be Less Than 5MB", {
+        style: { background: "#333", color: "#fff" },
+      });
       return;
     }
     setSelectedFile(file);
@@ -67,12 +71,18 @@ export default function SettingsForm({
         avatar: avatarUrl || undefined,
       });
       if (!res) {
-        toast.error("Failed to update profile");
+        toast.error("Failed to Update Profile", {
+          style: { background: "#333", color: "#fff" },
+        });
         return;
       }
-      toast.success("Profile updated");
+      toast("Profile Updated", {
+        style: { background: "#333", color: "#fff" },
+      });
     } catch (err) {
-      toast.error("Could not save settings");
+      toast("Could not Save Settings", {
+        style: { background: "#333", color: "#fff" },
+      });
     } finally {
       setIsSaving(false);
     }

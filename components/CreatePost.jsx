@@ -16,16 +16,34 @@ export default function CreatePostPage() {
   const fileInputRef = useRef(null);
   function handleFileUpload(e) {
     const file = e.target.files[0];
-    console.log(file);
-    if (file && file.name.endsWith(".mp4")) {
-      setIsVideo(true);
-    }
     if (!file) return;
-    if (file.size > 1024 * 1024 * 10 * 4) {
-      toast.error("media size must be less than 40MB");
-      setIsVideo(false);
+
+    const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+    const validVideoTypes = ["video/mp4", "video/webm"];
+    const isImage = validImageTypes.includes(file.type);
+    const isVideo = validVideoTypes.includes(file.type);
+
+    if (!isImage && !isVideo) {
+      toast.error("Only images or videos are allowed", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
       return;
     }
+
+    if (file.size > 1024 * 1024 * 40) {
+      toast.error("Media size must be less than 40MB", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      return;
+    }
+
+    setIsVideo(isVideo);
     setSelectedFile(file);
     const previewUrl = URL.createObjectURL(file);
     setSelectedPreview(previewUrl);
@@ -65,7 +83,12 @@ export default function CreatePostPage() {
           }
         );
         if (!response.ok) {
-          toast.error("unable to add media");
+          toast.error("Unable to Add Media", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
         }
         const data = await response.json();
         mediaUrl = data.secure_url;
@@ -76,12 +99,25 @@ export default function CreatePostPage() {
         setContent("");
         setSelectedFile(null);
         setSelectedPreview(null);
-        toast.success("created post successfully");
+
+        toast("Created Post", {
+          style: { background: "#333", color: "#fff" },
+        });
       } else {
-        toast.error("failed to create post");
+        toast.error("Post Failed", {
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     } catch (e) {
-      toast.error("failed to create post");
+      toast.error("Post Failed", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } finally {
       setIsLoading(false);
     }

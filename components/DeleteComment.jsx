@@ -19,11 +19,18 @@ export default function DeleteCommentPage({ commentId }) {
     try {
       const result = await deleteComment(commentId);
       if (result.success) {
-        toast.success("deleted comment successfully");
+        toast("Comment Deleted", {
+          style: { background: "#333", color: "#fff" },
+        });
         setOpen(false);
       }
     } catch (e) {
-      toast.error("failed to delete comment");
+      toast.error("Failed to Delete Comment", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
     }
   }
   return (

@@ -33,13 +33,19 @@ export default function updatePostPage({
     try {
       const result = await updatePost(id, content.trim());
       if (result.success) {
-        toast.success("updated post successfully");
+        toast("Post Updated", {
+          style: { background: "#333", color: "#fff" },
+        });
         setOpen(false);
       } else {
-        toast.error("failed to update post");
+        toast.error("Failed to Update Post", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     } catch (e) {
-      toast.error("failed to update post");
+      toast.error("Failed to Update Post", {
+        style: { background: "#333", color: "#fff" },
+      });
     }
   }
   return (

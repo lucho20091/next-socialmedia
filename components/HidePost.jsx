@@ -23,7 +23,9 @@ export default function HidePostPage({ id }) {
     try {
       const result = await hidePost(id);
       if (result.success) {
-        toast.success("toggled hid post successfully");
+        toast("Post Visibility Toggled", {
+          style: { background: "#333", color: "#fff" },
+        });
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
@@ -31,7 +33,9 @@ export default function HidePostPage({ id }) {
         }
       }
     } catch (e) {
-      toast.error("failed to toggle hid post");
+      toast.error("Failed to Toggle Visibility", {
+        style: { background: "#333", color: "#fff" },
+      });
     }
   }
   return (
@@ -63,11 +67,7 @@ export default function HidePostPage({ id }) {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
-          <Button
-            type="submit"
-            variant="destructive"
-            className="cursor-pointer"
-          >
+          <Button type="submit" className="cursor-pointer">
             Toggle hide
           </Button>
         </form>

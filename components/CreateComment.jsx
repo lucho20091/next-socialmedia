@@ -12,10 +12,17 @@ export default function CommentPage({ postId }) {
       const result = await createComment(content, postId);
       if (result.success) {
         setContent("");
-        toast.success("comment created successfully");
+        toast("Comment Posted", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     } catch (e) {
-      toast.error("failed to create post");
+      toast.error("Comment Failed", {
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } finally {
       setIsLoading(false);
     }

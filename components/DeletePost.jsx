@@ -22,7 +22,9 @@ export default function DeletePostPage({ id }) {
     try {
       const result = await deletePost(id);
       if (result.success) {
-        toast.success("deleted post successfully");
+        toast("Post Deleted", {
+          style: { background: "#333", color: "#fff" },
+        });
         setOpen(false);
         if (pathname.startsWith("/post/")) {
           console.log(pathname);
@@ -30,7 +32,9 @@ export default function DeletePostPage({ id }) {
         }
       }
     } catch (e) {
-      toast.error("failed to delete post");
+      toast.error("Failed to Delete Post", {
+        style: { background: "#333", color: "#fff" },
+      });
     }
   }
   return (

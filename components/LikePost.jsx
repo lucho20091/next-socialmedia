@@ -13,22 +13,32 @@ export default function LikePost({ postId, currentLikes, userId }) {
     if (userHasLiked) {
       const response = await dislikePost(postId);
       if (response.success) {
-        toast.success("disliked post successfully");
+        toast("Disliked Post", {
+          style: { background: "#333", color: "#fff" },
+        });
         setLikes((prev) => prev.filter((like) => like.id !== userId));
       } else {
-        toast.error("failed to dislike post");
+        toast.error("Failed to Dislike Post", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     } else {
       if (!userId) {
-        toast.error("you must sign in to like posts");
+        toast.error("Sign-in to Like Posts", {
+          style: { background: "#333", color: "#fff" },
+        });
         return;
       }
       const response = await likePost(postId);
       if (response.success) {
-        toast.success("liked post successfully");
+        toast("Liked Post", {
+          style: { background: "#333", color: "#fff" },
+        });
         setLikes((prev) => [...prev, { id: userId }]);
       } else {
-        toast.error("failed to like post");
+        toast.error("Failed to Like Post", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     }
   }

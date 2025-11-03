@@ -33,13 +33,19 @@ export default function UpdateCommentPage({
     try {
       const result = await updateComment(id, content.trim());
       if (result.success) {
-        toast.success("updated comment successfully");
+        toast("Comment Updated", {
+          style: { background: "#333", color: "#fff" },
+        });
         setOpen(false);
       } else {
-        toast.error("failed to update comment");
+        toast.error("Failed to Update Comment", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     } catch (e) {
-      toast.error("failed to update comment");
+      toast.error("Failed to Update Comment", {
+        style: { background: "#333", color: "#fff" },
+      });
     }
   }
   return (

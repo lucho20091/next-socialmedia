@@ -48,7 +48,7 @@ export default function LockScreen() {
       </div>
       {locked && (
         <div className="absolute left-5 top-5 bg-black/50 backdrop-blur-xl px-4 py-2 text-white shadow-xl border border-gray-700 rounded-md shadow-gray-800">
-          <span>screen locked</span>
+          <span>Screen Locked</span>
         </div>
       )}
     </>
