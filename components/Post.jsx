@@ -17,6 +17,7 @@ import HidePostPage from "./HidePost";
 import { formatDistanceToNow } from "date-fns";
 
 import LockScreen from "./LockScreen";
+import ProtectPostPage from "./ProtectPost";
 export default function PostPage({
   post,
   prismaUser,
@@ -86,6 +87,11 @@ export default function PostPage({
           </div>
         </div>
         <div className="ml-auto flex gap-2">
+          {prismaUser &&
+            prismaUser.isAdmin &&
+            post.author.id === prismaUser.id && (
+              <ProtectPostPage id={post.id} isProtected={post.isProtected} />
+            )}
           {prismaUser &&
             (prismaUser?.isAdmin || post.author.id === prismaUser.id) && (
               <HidePostPage id={post.id} />

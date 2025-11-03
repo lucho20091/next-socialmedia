@@ -31,6 +31,10 @@ export default function HidePostPage({ id }) {
           console.log(pathname);
           router.back();
         }
+      } else {
+        toast.error("Failed to Toggle Visibility", {
+          style: { background: "#333", color: "#fff" },
+        });
       }
     } catch (e) {
       toast.error("Failed to Toggle Visibility", {

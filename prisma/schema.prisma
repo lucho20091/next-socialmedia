@@ -29,6 +29,7 @@ model Post {
   content String
   mediaUrl   String?
   isHidden Boolean @default(false)
+  isProtected Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author User @relation("writtenPosts", fields: [authorId], references: [id], onDelete: Cascade)
