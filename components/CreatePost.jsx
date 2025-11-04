@@ -170,7 +170,7 @@ export default function CreatePostPage({ isAdmin = false }) {
           />
           <button
             type="button"
-            onClick={removeImage}
+            onClick={removeMedia}
             className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors cursor-pointer"
           >
             <svg
