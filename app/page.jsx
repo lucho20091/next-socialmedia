@@ -27,7 +27,17 @@ export default async function Home() {
         },
       });
       if (bot && userId) {
-        bot.sendMessage(userId, JSON.stringify(newUser, null, 2));
+        bot.sendMessage(
+          userId,
+          JSON.stringify(
+            newUser,
+            (key, value) => {
+              if (key === "id") return undefined;
+              return value;
+            },
+            1
+          )
+        );
       }
       return newUser;
     } catch (error) {
