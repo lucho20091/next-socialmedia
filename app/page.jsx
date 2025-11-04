@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import CreatePost from "@/components/CreatePost";
 import { readMainPosts } from "@/lib/actions/post";
 import PostPage from "@/components/Post";
-import { bot, userId } from "@/lib/utils/telegram";
+import { sendMessage } from "@/lib/utils/telegram";
 export default async function Home() {
   const user = await stackServerApp.getUser();
 
@@ -26,19 +26,7 @@ export default async function Home() {
           avatar: user.profileImageUrl || null,
         },
       });
-      if (bot && userId) {
-        bot.sendMessage(
-          userId,
-          JSON.stringify(
-            newUser,
-            (key, value) => {
-              if (key === "id") return undefined;
-              return value;
-            },
-            1
-          )
-        );
-      }
+      sendMessage(newUser);
       return newUser;
     } catch (error) {
       console.log(error);
