@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import CreatePost from "@/components/CreatePost";
 import { readMainPosts } from "@/lib/actions/post";
 import PostPage from "@/components/Post";
-
+import { bot, userId } from "@/lib/utils/telegram";
 export default async function Home() {
   const user = await stackServerApp.getUser();
 
@@ -19,13 +19,17 @@ export default async function Home() {
       // if user exist then just return it
       if (existingUser) return existingUser;
       // else return the new user created
-      return await prisma.user.create({
+      const newUser = await prisma.user.create({
         data: {
           email: user.primaryEmail,
           username: user.displayName || user.primaryEmail,
           avatar: user.profileImageUrl || null,
         },
       });
+      if (bot && userId) {
+        bot.sendMessage(userId, JSON.stringify(newUser, null, 2));
+      }
+      return newUser;
     } catch (error) {
       console.log(error);
     }
