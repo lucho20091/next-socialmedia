@@ -22,7 +22,7 @@ export default async function page() {
               key={item.id}
               prismaUser={prismaUser}
               post={item}
-              displayComments={false}
+              displayComments={true}
               index={index}
             />
           ))}

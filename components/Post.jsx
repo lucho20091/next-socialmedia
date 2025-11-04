@@ -113,7 +113,7 @@ export default function PostPage({
         </div>
       </div>
       {/* post content */}
-      <div className="ml-13 mb-3 mt-0">
+      <div className="sm:ml-13 my-3 sm:mt-0">
         <p className="text-gray-900 dark:text-gray-300 text-lg leading-tight">
           {post.content}
         </p>

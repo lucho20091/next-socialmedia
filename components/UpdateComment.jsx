@@ -42,6 +42,12 @@ export default function UpdateCommentPage({
       showToast("Failed to Update Comment", "error");
     }
   }
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
@@ -62,7 +68,7 @@ export default function UpdateCommentPage({
       >
         <BiEdit size={16} className="sm:size-[18px] text-inherit" />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="top-5 translate-y-0 sm:top-1/2 sm:-translate-y-1/2">
         <DialogHeader>
           <DialogTitle>Edit Post</DialogTitle>
           <DialogDescription>
@@ -92,6 +98,14 @@ export default function UpdateCommentPage({
                 value={content}
                 placeholder="What's happening?"
                 className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
+              />
+              <textarea
+                onChange={(e) => setContent(e.target.value)}
+                onKeyDown={handleKeyDown}
+                value={content}
+                placeholder="What's happening?"
+                rows={4}
+                className="w-full resize-none bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
               />
             </div>
           </div>

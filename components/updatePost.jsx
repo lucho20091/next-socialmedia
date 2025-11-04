@@ -42,6 +42,12 @@ export default function updatePostPage({
       showToast("Failed to Update Post", "error");
     }
   }
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
@@ -60,7 +66,7 @@ export default function updatePostPage({
       >
         <BiEdit size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="top-5 translate-y-0 sm:top-1/2 sm:-translate-y-1/2">
         <DialogHeader>
           <DialogTitle>Edit Post</DialogTitle>
           <DialogDescription>
@@ -84,12 +90,20 @@ export default function updatePostPage({
                   {username}
                 </span>
               )}
-              <input
+              {/* <input
                 type="text"
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
                 placeholder="What's happening?"
                 className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
+              /> */}
+              <textarea
+                onChange={(e) => setContent(e.target.value)}
+                onKeyDown={handleKeyDown}
+                value={content}
+                placeholder="What's happening?"
+                rows={4}
+                className="w-full resize-none bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
               />
             </div>
           </div>

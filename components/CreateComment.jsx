@@ -30,7 +30,7 @@ export default function CommentPage({ postId }) {
       <input
         type="text"
         placeholder="Add a comment..."
-        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none min-w-[150px] dark:text-gray-300 "
+        className="flex-1 bg-transparent text-gray-900 placeholder-gray-500 outline-none min-w-[100px] dark:text-gray-300 "
         name="content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
