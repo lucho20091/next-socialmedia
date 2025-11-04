@@ -72,7 +72,7 @@ export default function PostPage({
           />
         </Link>
         <div className="flex-1 min-w-0">
-          <div className="flex flex-col items-start sm:flex-row sm:items-center space-x-2 min-w-0">
+          <div className="flex flex-col items-start space-x-2 min-w-0">
             <Link
               href={`/profile/${post.author.id}`}
               className="min-w-0 max-w-full"
@@ -113,7 +113,7 @@ export default function PostPage({
         </div>
       </div>
       {/* post content */}
-      <div className="ml-13 mb-3 mt-0 sm:mt-[-16px]">
+      <div className="ml-13 mb-3 mt-0">
         <p className="text-gray-900 dark:text-gray-300 text-lg leading-tight">
           {post.content}
         </p>
