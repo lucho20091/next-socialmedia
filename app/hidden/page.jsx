@@ -24,6 +24,7 @@ export default async function page() {
               post={item}
               displayComments={true}
               index={index}
+              homePage={true}
             />
           ))}
       </div>
