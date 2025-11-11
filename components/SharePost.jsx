@@ -11,7 +11,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useState, useEffect } from "react";
 export default function SharePostPage({ id }) {
+  const [shareUrl, setShareUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const baseUrl = window.location.origin; // e.g. http://localhost:3000 or https://smtestvercel.com
+      setShareUrl(`${baseUrl}/post/${id}`);
+    }
+  }, [id]);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -32,11 +41,7 @@ export default function SharePostPage({ id }) {
             <label htmlFor="link" className="sr-only">
               Link
             </label>
-            <input
-              id="link"
-              defaultValue={`https://smedia.lucho.uk/post/${id}`}
-              readOnly
-            />
+            <input id="link" defaultValue={shareUrl} readOnly />
           </div>
         </div>
         <DialogFooter className="sm:justify-start">
