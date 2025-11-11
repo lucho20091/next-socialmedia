@@ -39,7 +39,7 @@ export default function LockScreen() {
         <button
           ref={buttonRef}
           onClick={() => setLocked(!locked)}
-          className={`p-3 rounded-full backdrop-blur-xs border border-gray-700 shadow-md shadow-gray-900 transition
+          className={`p-3 rounded-full backdrop-blur-xs border border-gray-700 shadow-md shadow-gray-900 transition cursor-pointer
             ${
               locked
                 ? "bg-black/20 hover:bg-black/40 text-gray-400"
