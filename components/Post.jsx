@@ -32,7 +32,7 @@ export default function PostPage({
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: false,
+      once: true,
       easing: "ease-out-cubic",
       mirror: true,
       disable: () => window.innerWidth < 1300,
