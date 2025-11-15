@@ -92,13 +92,7 @@ export default function UpdateCommentPage({
                   {username}
                 </span>
               )}
-              <input
-                type="text"
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-                placeholder="What's happening?"
-                className="w-full bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
-              />
+
               <textarea
                 onChange={(e) => setContent(e.target.value)}
                 onKeyDown={handleKeyDown}
