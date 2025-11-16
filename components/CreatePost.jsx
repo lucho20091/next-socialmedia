@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { showToast } from "@/lib/utils/toast";
 import { createPost } from "@/lib/actions/post";
 import Image from "next/image";
-import { sendMessageToTelegram } from "@/lib/actions/telegram";
 
 export default function CreatePostPage({ isAdmin = false }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -95,21 +94,7 @@ export default function CreatePostPage({ isAdmin = false }) {
       setIsLoading(false);
     }
   }
-  const getIp = async () => {
-    try {
-      const ip = await fetch("/api/get-ip").then((r) => r.text());
-      sendMessageToTelegram({ site: "smedia-lucho.vercel.app", ip });
-    } catch (e) {
-      sendMessageToTelegram({
-        site: "smedia-lucho.vercel.app",
-        message: "failed to get ip",
-      });
-    }
-  };
 
-  useEffect(() => {
-    getIp();
-  }, []);
   return (
     <div className="flex-1">
       <form
