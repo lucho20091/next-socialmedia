@@ -7,9 +7,8 @@ export async function GET(req) {
       `https://api.ipinfo.io/lite/${info}?token=${token}`
     );
 
-    const data = await res.json();
-
-    return NextResponse.json(data || info);
+    const { country, continent } = await res.json();
+    return NextResponse.json({ country, continent });
   } catch (e) {
     console.log(e);
     return NextResponse.json(
