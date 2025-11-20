@@ -1,0 +1,36 @@
+/* aos-custom.css */
+
+/* ---------------------------
+   Core AOS styles
+---------------------------- */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+  will-change: opacity, transform;
+
+  /* Default duration and delay fallback */
+  transition-duration: 400ms; /* default if data-aos-duration not set */
+  transition-delay: 0ms; /* default if data-aos-delay not set */
+}
+
+/* Use CSS variables to allow dynamic duration/delay */
+[data-aos][data-aos-duration] {
+  transition-duration: attr(data-aos-duration ms);
+}
+
+[data-aos][data-aos-delay] {
+  transition-delay: attr(data-aos-delay ms);
+}
+
+/* ---------------------------
+   zoom-in-left animation only
+---------------------------- */
+[data-aos="zoom-in-left"] {
+  transform: translateX(-50px);
+}
+
+[data-aos="zoom-in-left"].aos-animate {
+  transform: translateX(0);
+  opacity: 1;
+}
