@@ -29,6 +29,16 @@ export default function PostPage({
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
     return dateFns.replace(/^about\s/, "");
   }
+  function transformAvatar(url) {
+    if (!url) return "/default-profile.jpg";
+
+    return url.replace("/upload/", "/upload/c_fill,w_38,h_38,g_auto/");
+  }
+  function transformMainPost(url) {
+    if (!url) return "";
+
+    return url.replace("/upload/", "/upload/c_fit,w_588,h_588/");
+  }
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -55,9 +65,11 @@ export default function PostPage({
       <div className="flex items-start space-x-3">
         <Link href={`/profile/${post.author.id}`}>
           <Image
-            src={post.author.avatar || "/default-profile.jpg"}
+            src={transformAvatar(post.author.avatar)}
             width={40}
             height={40}
+            sizes="40px"
+            quality={60}
             alt={`${post.author.username} avatar`}
             className=" w-10 h-10 
       rounded-full 
@@ -122,7 +134,7 @@ export default function PostPage({
       {post.mediaUrl && !post.mediaUrl.endsWith(".mp4") && (
         <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
           <Image
-            src={post.mediaUrl}
+            src={transformMainPost(post.mediaUrl)}
             width={500}
             height={500}
             alt={`Image posted by ${post.author.username}`}
@@ -185,9 +197,11 @@ export default function PostPage({
                   <div className="flex items-start space-x-3 pl-4 py-2 border-y-1 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-neutral-950">
                     <Link href={`/profile/${item.author.id}`}>
                       <Image
-                        src={item.author.avatar || "/default-profile.jpg"}
+                        src={transformAvatar(item.author.avatar)}
                         width={40}
                         height={40}
+                        sizes="40px"
+                        quality={60}
                         alt="Profile"
                         className="w-10 h-10 
       rounded-full 
@@ -243,11 +257,13 @@ export default function PostPage({
               <div className="pt-4">
                 <div className="flex items-start space-x-3">
                   <Image
-                    src={prismaUser?.avatar || "/default-profile.jpg"}
+                    src={transformAvatar(prismaUser?.avatar)}
                     width={40}
                     height={40}
+                    sizes="40px"
+                    quality={60}
                     alt={`${prismaUser.username} avatar`}
-                    className="rounded-full border-2 border-gray-800 shadow-xl dark:shadow-gray-900 w-10 h-10"
+                    className="rounded-full border border-gray-800 shadow-xl dark:shadow-gray-900 w-10 h-10"
                   />
 
                   <div className="flex-1">
