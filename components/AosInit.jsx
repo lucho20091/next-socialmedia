@@ -12,7 +12,7 @@ export default function AosInit() {
       once: true,
       easing: "ease-out-cubic",
       mirror: false,
-      disable: window.innerWidth < 1300,
+      disable: () => window.innerWidth < 1300,
     });
   }, []);
 
