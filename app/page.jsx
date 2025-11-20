@@ -5,7 +5,6 @@ import CreatePost from "@/components/CreatePost";
 import { readMainPosts } from "@/lib/actions/post";
 import PostPage from "@/components/Post";
 import { sendMessage } from "@/lib/utils/telegram";
-import GetInfo from "@/components/GetInfo";
 export default async function Home() {
   const user = await stackServerApp.getUser();
 
@@ -69,7 +68,6 @@ export default async function Home() {
             />
           ))}
       </div>
-      <GetInfo />
     </div>
   );
 }

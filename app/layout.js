@@ -5,6 +5,7 @@ import { stackClientApp } from "../stack/client";
 import "./globals.css";
 import AosInit from "@/components/AosInit";
 import Navbar from "@/components/Navbar";
+import GetInfo from "@/components/GetInfo";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import HasSeenPopUp from "@/components/HasSeenPopUp";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
               <HasSeenPopUp />
               {children}
               <AosInit />
+              <GetInfo />
             </ThemeProvider>
           </StackTheme>
         </StackProvider>
