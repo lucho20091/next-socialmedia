@@ -2,7 +2,7 @@
 "use client";
 import { useEffect } from "react";
 import AOS from "aos";
-import "@/app/aos-custom.css";
+import "aos/dist/aos.css";
 
 export default function AosInit() {
   useEffect(() => {
@@ -12,6 +12,7 @@ export default function AosInit() {
       once: true,
       easing: "ease-out-cubic",
       mirror: false,
+      disable: () => window.innerWidth < 1300,
     });
   }, []);
 

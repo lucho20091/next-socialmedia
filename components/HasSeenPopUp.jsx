@@ -35,9 +35,7 @@ export default function HasSeenPopUp() {
           <ul className="list-disc pl-5 space-y-1">
             <li>Sign in to start uploading</li>
             <li>Create and customize your profile</li>
-            <li>
-              Post videos or images — choose to make them public or hidden
-            </li>
+            <li>Post videos or images</li>
             <li>Like and comment on other users’ posts</li>
           </ul>
         </div>
