@@ -1,4 +1,7 @@
 "use client";
+import { useEffect } from "react";
+import AOS from "aos";
+import "@/app/aos-custom.css";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -23,6 +26,15 @@ export default function PostPage({
   homePage = false,
   index = 1,
 }) {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+      mirror: false,
+      disable: () => window.innerWidth < 1300,
+    });
+  }, []);
   function formatDate(date) {
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
     return dateFns.replace(/^about\s/, "");

@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "../stack/client";
 import "./globals.css";
-import AosInit from "@/components/AosInit";
 import Navbar from "@/components/Navbar";
 import GetInfo from "@/components/GetInfo";
 import { Toaster } from "react-hot-toast";
@@ -40,7 +39,6 @@ export default function RootLayout({ children }) {
               <Navbar />
               <HasSeenPopUp />
               {children}
-              <AosInit />
               <GetInfo />
             </ThemeProvider>
           </StackTheme>
