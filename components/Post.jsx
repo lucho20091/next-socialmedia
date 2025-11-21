@@ -135,31 +135,34 @@ export default function PostPage({
         </p>
       </div>
       {/* post image */}
-      {post.mediaUrl && !post.mediaUrl.endsWith(".mp4") && (
-        <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
-          <Image
-            src={transformMainPost(post.mediaUrl)}
-            width={500}
-            height={500}
-            alt={`Image posted by ${post.author.username}`}
-            className="w-full h-auto object-contain"
-            priority
-            fetchPriority="high"
-          />
-        </div>
-      )}
+      {post.mediaUrl &&
+        !post.mediaUrl.endsWith(".mp4") &&
+        !post.mediaUrl.endsWith(".webm") && (
+          <div className="sm:ml-13 mb-4 rounded-2xl bg-black">
+            <Image
+              src={transformMainPost(post.mediaUrl)}
+              width={500}
+              height={500}
+              alt={`Image posted by ${post.author.username}`}
+              className="w-full h-auto object-contain"
+              priority
+              fetchPriority="high"
+            />
+          </div>
+        )}
       {/* post video */}
-      {post.mediaUrl && post.mediaUrl.endsWith(".mp4") && (
-        <div className="sm:ml-13 mb-4 rounded-2xl bg-black relative">
-          <video
-            src={post.mediaUrl}
-            className="w-full h-auto max-h-[600px] object-contain"
-            controls
-            loop
-          />
-          <LockScreen />
-        </div>
-      )}
+      {post.mediaUrl &&
+        (post.mediaUrl.endsWith(".mp4") || post.mediaUrl.endsWith(".webm")) && (
+          <div className="sm:ml-13 mb-4 rounded-2xl bg-black relative">
+            <video
+              src={post.mediaUrl}
+              className="w-full h-auto max-h-[600px] object-contain"
+              controls
+              loop
+            />
+            <LockScreen />
+          </div>
+        )}
       {/* post actions */}
       <div className="grid grid-cols-[2fr_2fr_1fr] sm:grid-cols-3 sm:ml-13">
         <div className="flex items-center justify-start gap-2 sm:gap-4 ">
