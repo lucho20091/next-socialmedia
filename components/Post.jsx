@@ -41,11 +41,14 @@ export default function PostPage({
   }
   function transformAvatar(url) {
     if (!url) return "/default-profile.jpg";
-
+    return url;
+    // not using it because its costing cloudinary credits
     return url.replace("/upload/", "/upload/c_fill,w_38,h_38,g_auto/");
   }
   function transformMainPost(url) {
     if (!url) return "";
+    return url;
+    // not using it because its costing cloudinary credits
 
     return url.replace("/upload/", "/upload/c_fit,w_588,h_588/");
   }
