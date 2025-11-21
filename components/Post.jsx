@@ -42,15 +42,10 @@ export default function PostPage({
   function transformAvatar(url) {
     if (!url) return "/default-profile.jpg";
     return url;
-    // not using it because its costing cloudinary credits
-    return url.replace("/upload/", "/upload/c_fill,w_38,h_38,g_auto/");
   }
   function transformMainPost(url) {
     if (!url) return "";
     return url;
-    // not using it because its costing cloudinary credits
-
-    return url.replace("/upload/", "/upload/c_fit,w_588,h_588/");
   }
 
   const delay = index > 10 ? 1000 : index * 100;
@@ -159,6 +154,7 @@ export default function PostPage({
               className="w-full h-auto max-h-[600px] object-contain"
               controls
               loop
+              loading="lazy"
             />
             <LockScreen />
           </div>

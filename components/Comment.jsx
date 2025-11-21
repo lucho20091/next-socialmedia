@@ -2,6 +2,7 @@ import DeleteCommentPage from "@/components/DeleteComment";
 import UpdateCommentPage from "@/components/UpdateComment";
 import Link from "next/link";
 import Image from "next/image";
+
 export default function Comment({
   item,
   prismaUser,

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import HasSeenPopUp from "./HasSeenPopUp";
+
 export default async function Navbar() {
   const user = await stackServerApp.getUser();
   let prismaUser;
