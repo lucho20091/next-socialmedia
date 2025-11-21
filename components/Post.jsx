@@ -1,7 +1,8 @@
 "use client";
-import { useEffect } from "react";
-import AOS from "aos";
-import "@/app/aos-custom.css";
+// Removed AOS imports and useEffect for AOS initialization
+// import { useEffect } from "react";
+// import AOS from "aos";
+// import "@/app/aos-custom.css";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -26,15 +27,16 @@ export default function PostPage({
   homePage = false,
   index = 1,
 }) {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-out-cubic",
-      mirror: false,
-      disable: () => window.innerWidth < 1300,
-    });
-  }, []);
+  // Removed useEffect for AOS initialization
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 800,
+  //     once: true,
+  //     easing: "ease-out-cubic",
+  //     mirror: false,
+  //     disable: () => window.innerWidth < 1300,
+  //   });
+  // }, []);
   function formatDate(date) {
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
     return dateFns.replace(/^about\s/, "");
@@ -48,16 +50,18 @@ export default function PostPage({
     return url;
   }
 
-  const delay = index > 10 ? 1000 : index * 100;
-  const duration = index < 3 ? 500 + index * 200 : 1100;
+  // Removed delay and duration calculations as they were for AOS
+  // const delay = index > 10 ? 1000 : index * 100;
+  // const duration = index < 3 ? 500 + index * 200 : 1100;
 
   return (
     <div
       key={post.id}
       className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-[oklch(16.5%_0_0)] transition-colors"
-      data-aos="zoom-in-left"
-      data-aos-delay={delay}
-      data-aos-duration={duration}
+      // Removed data-aos attributes
+      // data-aos="zoom-in-left"
+      // data-aos-delay={delay}
+      // data-aos-duration={duration}
       suppressHydrationWarning
     >
       {/* post header */}
