@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
-  DialogContent,
   DialogFooter,
+  DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -25,6 +25,7 @@ export default function PeopleLiked({ userHasLiked, likes }) {
                 : "text-gray-500 dark:text-gray-400"
             }
           `}
+          aria-label={`${likes.length} ${likes.length === 1 ? "like" : "likes"}`}
         >
           {likes.length} {likes.length === 1 ? "like" : "likes"}
         </button>
@@ -42,10 +43,11 @@ export default function PeopleLiked({ userHasLiked, likes }) {
                 key={user.id}
                 href={`/profile/${user.id}`}
                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors"
+                aria-label={`View ${user.username}'s profile`}
               >
                 <img
                   src={user.avatar || "/default-avatar.png"}
-                  alt={user.username}
+                  alt={`${user.username}'s avatar`}
                   className="w-8 h-8 rounded-full object-cover"
                 />
                 <span className="text-gray-800 dark:text-gray-200 font-medium">
@@ -66,6 +68,7 @@ export default function PeopleLiked({ userHasLiked, likes }) {
               type="button"
               variant="secondary"
               className="cursor-pointer"
+              aria-label="Close"
             >
               Close
             </Button>

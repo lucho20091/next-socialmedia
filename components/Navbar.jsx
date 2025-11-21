@@ -70,7 +70,7 @@ export default async function Navbar() {
                   src={avatarSrc}
                   width={40}
                   height={40}
-                  alt="Profile"
+                  alt={`${prismaUser?.username || "User"} profile avatar`}
                   className="      
        w-10 h-10 
       rounded-full 

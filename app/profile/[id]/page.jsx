@@ -34,7 +34,7 @@ export default async function page({ params }) {
             src={profileUser?.avatar || "/default-profile.jpg"}
             alt={
               profileUser?.username
-                ? `${profileUser.username} avatar`
+                ? `${profileUser.username}'s profile avatar`
                 : "Profile avatar"
             }
             className="

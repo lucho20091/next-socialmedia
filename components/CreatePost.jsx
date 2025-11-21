@@ -170,7 +170,7 @@ export default function CreatePostPage({ isAdmin = false }) {
         <div className="relative mt-4 rounded-2xl overflow-hidden">
           <Image
             src={selectedPreview}
-            alt="Selected media preview"
+            alt="Selected image preview for new post"
             width={800}
             height={320}
             className="w-full md:w-[300px] h-auto object-contain"
@@ -203,7 +203,7 @@ export default function CreatePostPage({ isAdmin = false }) {
             src={selectedPreview}
             className="w-full md:w-[300px] h-auto object-contain"
             controls
-            aria-label="Selected video preview"
+            aria-label="Selected video preview for new post"
           />
           <button
             type="button"

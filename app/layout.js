@@ -19,11 +19,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SMedia",
+  title: {
+    default: "SMedia",
+    template: "%s | SMedia",
+  },
   description:
     "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
   icons: {
     icon: "/favicon.svg",
+  },
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
+  openGraph: {
+    title: "SMedia",
+    description:
+      "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
+    url: "https://smtestvercel.com", // Replace with your actual domain
+    siteName: "SMedia",
+    images: [
+      {
+        url: "/og-image.jpg", // Path to your social sharing image
+        width: 1200,
+        height: 630,
+        alt: "SMedia social sharing image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SMedia",
+    description:
+      "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
+    images: ["/og-image.jpg"], // Path to your social sharing image
   },
 };
 

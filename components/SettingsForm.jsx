@@ -82,7 +82,7 @@ export default function SettingsForm({
       <div className="flex items-start gap-4">
         <Image
           src={preview || "/default-profile.jpg"}
-          alt="Avatar preview"
+          alt="Profile avatar preview"
           width={96}
           height={96}
           className="w-24 h-24 rounded-full object-cover border-2 border-blue-500 shadow"

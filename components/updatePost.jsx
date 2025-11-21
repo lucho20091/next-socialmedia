@@ -81,7 +81,7 @@ export default function updatePostPage({
                 src={imageUrl || "/default-profile.jpg"}
                 width={40}
                 height={40}
-                alt="Profile avatar"
+                alt={`${username} avatar`}
                 className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
               />
             )}
