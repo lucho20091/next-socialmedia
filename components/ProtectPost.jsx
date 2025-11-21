@@ -50,6 +50,7 @@ export default function ProtectPostPage({ id, isProtected }) {
     hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
     hover:text-indigo-500 dark:hover:text-indigo-300
   "
+        aria-label={isProtected ? "Unprotect post" : "Protect post"}
       >
         {isProtected ? (
           <IoShieldSharp className="text-yellow-500" />
@@ -66,7 +67,7 @@ export default function ProtectPostPage({ id, isProtected }) {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
-          <Button type="submit" className="cursor-pointer">
+          <Button type="submit" className="cursor-pointer" aria-label={isProtected ? "Confirm unprotect post" : "Confirm protect post"}>
             {isProtected ? "Unprotect" : "Protect"} Post
           </Button>
         </form>

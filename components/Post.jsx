@@ -62,7 +62,7 @@ export default function PostPage({
     >
       {/* post header */}
       <div className="flex items-start space-x-3">
-        <Link href={`/profile/${post.author.id}`}>
+        <Link href={`/profile/${post.author.id}`} aria-label={`View ${post.author.username}'s profile`}>
           <Image
             src={transformAvatar(post.author.avatar)}
             width={40}
@@ -87,6 +87,7 @@ export default function PostPage({
             <Link
               href={`/profile/${post.author.id}`}
               className="min-w-0 max-w-full"
+              aria-label={`View ${post.author.username}'s profile`}
             >
               <span className="block font-bold text-gray-900 dark:text-gray-400 truncate">
                 {post.author.username}
@@ -155,6 +156,7 @@ export default function PostPage({
               controls
               loop
               loading="lazy"
+              aria-label={`Video posted by ${post.author.username}`}
             />
             <LockScreen />
           </div>
@@ -171,6 +173,7 @@ export default function PostPage({
         <Link
           href={`/post/${post.id}`}
           className="flex items-center justify-start gap-2 sm:gap-4 dark:text-gray-400"
+          aria-label={`View comments for post by ${post.author.username}`}
         >
           <CgComment size="25px" />{" "}
           <span>{post?._count?.comments || post?.comments?.length} </span>
@@ -192,6 +195,7 @@ export default function PostPage({
               <Link
                 className="inline-block text-blue-800 font-semibold mb-2"
                 href={`/post/${post.id}`}
+                aria-label="View more comments"
               >
                 View more comments
               </Link>

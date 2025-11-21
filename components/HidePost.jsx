@@ -54,6 +54,7 @@ export default function HidePostPage({ id, isHidden }) {
     hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
     hover:text-indigo-500 dark:hover:text-indigo-300
   "
+        aria-label={isHidden ? "Unhide post" : "Hide post"}
       >
         <MdHideSource size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
@@ -66,7 +67,7 @@ export default function HidePostPage({ id, isHidden }) {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="ml-auto">
-          <Button type="submit" className="cursor-pointer">
+          <Button type="submit" className="cursor-pointer" aria-label={isHidden ? "Confirm unhide post" : "Confirm hide post"}>
             {isHidden ? "Unhide" : "Hide"} Post
           </Button>
         </form>

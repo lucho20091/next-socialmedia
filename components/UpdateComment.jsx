@@ -65,6 +65,7 @@ export default function UpdateCommentPage({
     hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
     hover:text-indigo-500 dark:hover:text-indigo-300
   "
+        aria-label="Edit comment"
       >
         <BiEdit size={16} className="sm:size-[18px] text-inherit" />
       </DialogTrigger>
@@ -82,7 +83,7 @@ export default function UpdateCommentPage({
                 src={imageUrl || "/default-profile.jpg"}
                 width={40}
                 height={40}
-                alt="Profile"
+                alt="Profile avatar"
                 className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
               />
             )}
@@ -100,15 +101,16 @@ export default function UpdateCommentPage({
                 placeholder="What's happening?"
                 rows={4}
                 className="w-full resize-none bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
+                aria-label="Comment content"
               />
             </div>
           </div>
           <DialogFooter>
             <div className="flex items-center justify-center mt-4 gap-4">
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" aria-label="Cancel editing comment">Cancel</Button>
               </DialogClose>
-              <Button type="submit" className="cursor-pointer">
+              <Button type="submit" className="cursor-pointer" aria-label="Save changes to comment">
                 Save changes
               </Button>
             </div>

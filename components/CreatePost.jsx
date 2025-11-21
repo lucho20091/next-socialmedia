@@ -108,12 +108,13 @@ export default function CreatePostPage({ isAdmin = false }) {
             value={content}
             placeholder="What's happening?"
             className="w-full bg-transparent text-gray-900 dark:text-gray-300 placeholder-gray-500 outline-none text-lg leading-relaxed py-3"
+            aria-label="Post content"
           />
 
           <div className="flex items-center justify-between mt-3">
             <div className="flex items-center gap-2 sm:gap-4">
               <div className="flex items-center space-x-4">
-                <label className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
+                <label htmlFor="media-upload" className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer" aria-label="Upload image or video">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -128,6 +129,7 @@ export default function CreatePostPage({ isAdmin = false }) {
                     />
                   </svg>
                   <input
+                    id="media-upload"
                     type="file"
                     onChange={handleFileUpload}
                     className="hidden"
@@ -138,10 +140,13 @@ export default function CreatePostPage({ isAdmin = false }) {
               </div>
               {isAdmin && (
                 <div className="flex items-center space-x-3">
+                  <label htmlFor="visibility-select" className="sr-only">Post visibility</label>
                   <select
+                    id="visibility-select"
                     value={isHidden ? "true" : "false"}
                     onChange={(e) => setIsHidden(e.target.value === "true")}
                     className="bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1 text-sm"
+                    aria-label="Post visibility"
                   >
                     <option value="false">Public</option>
                     <option value="true">Hidden</option>
@@ -153,6 +158,7 @@ export default function CreatePostPage({ isAdmin = false }) {
               type="submit"
               disabled={!content.trim() || isLoading}
               className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600"
+              aria-label={isLoading ? "Posting..." : "Post"}
             >
               {isLoading ? "Posting..." : "Post"}
             </button>
@@ -164,7 +170,7 @@ export default function CreatePostPage({ isAdmin = false }) {
         <div className="relative mt-4 rounded-2xl overflow-hidden">
           <Image
             src={selectedPreview}
-            alt="Selected"
+            alt="Selected media preview"
             width={800}
             height={320}
             className="w-full md:w-[300px] h-auto object-contain"
@@ -173,6 +179,7 @@ export default function CreatePostPage({ isAdmin = false }) {
             type="button"
             onClick={removeMedia}
             className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors cursor-pointer"
+            aria-label="Remove media"
           >
             <svg
               className="w-4 h-4"
@@ -196,11 +203,13 @@ export default function CreatePostPage({ isAdmin = false }) {
             src={selectedPreview}
             className="w-full md:w-[300px] h-auto object-contain"
             controls
+            aria-label="Selected video preview"
           />
           <button
             type="button"
             onClick={removeMedia}
             className="absolute top-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors cursor-pointer"
+            aria-label="Remove media"
           >
             <svg
               className="w-4 h-4"

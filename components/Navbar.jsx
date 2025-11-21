@@ -23,6 +23,7 @@ export default async function Navbar() {
         <Link
           href="/"
           className="group text-2xl font-bold dark:text-gray-300 tracking-tighter"
+          aria-label="Home"
         >
           <span className="transition-colors dark:group-hover:text-gray-200 font-bold">
             S
@@ -55,6 +56,7 @@ export default async function Navbar() {
     dark:hover:border-indigo-400/60 
     hover:text-indigo-400
   "
+                aria-label="View hidden posts"
               >
                 <FaRegEyeSlash className="text-inherit" />
               </Link>
@@ -63,7 +65,7 @@ export default async function Navbar() {
           <ThemeToggle />
           {user ? (
             <div className="flex items-center gap-2 sm:gap-4">
-              <Link href={profileHref}>
+              <Link href={profileHref} aria-label="View profile">
                 <Image
                   src={avatarSrc}
                   width={40}

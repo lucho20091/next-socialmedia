@@ -45,6 +45,7 @@ export default function LockScreen() {
                 ? "bg-black/20 hover:bg-black/40 text-gray-400"
                 : "bg-black/10 hover:bg-black/40 text-gray-400"
             }`}
+          aria-label={locked ? "Unlock screen" : "Lock screen"}
         >
           {locked ? <FaUnlock size={20} /> : <FaLock size={20} />}
         </button>

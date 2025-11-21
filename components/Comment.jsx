@@ -12,14 +12,14 @@ export default function Comment({
   return (
     <div key={item.id}>
       <div className="flex items-start space-x-3 pl-4 py-2 border-y-1 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-neutral-950">
-        <Link href={`/profile/${item.author.id}`}>
+        <Link href={`/profile/${item.author.id}`} aria-label={`View ${item.author.username}'s profile`}>
           <Image
             src={transformAvatar(item.author.avatar)}
             width={40}
             height={40}
             sizes="40px"
             quality={60}
-            alt="Profile"
+            alt={`${item.author.username} avatar`}
             className="w-10 h-10 rounded-full cursor-pointer transition-all duration-300 bg-gray-100 dark:bg-neutral-900 border border-gray-400 dark:border-neutral-700 shadow-md shadow-black/40 hover:scale-105 hover:shadow-lg hover:border-indigo-500/60 dark:hover:border-indigo-400/60"
           />
         </Link>
@@ -29,6 +29,7 @@ export default function Comment({
             <Link
               href={`/profile/${item.author.id}`}
               className="font-semibold text-gray-900 dark:text-gray-400"
+              aria-label={`View ${item.author.username}'s profile`}
             >
               {item.author.username}
             </Link>

@@ -32,6 +32,7 @@ export default function ThemeToggle() {
     hover:text-indigo-400 
     dark:hover:text-yellow-300
   "
+      aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
     >
       {theme === "light" ? (
         <MdDarkMode />

@@ -24,7 +24,7 @@ export default function SharePostPage({ id }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer dark:text-gray-400">
+        <button className="flex items-center justify-center gap-2 sm:gap-4 cursor-pointer dark:text-gray-400" aria-label="Share post">
           <CiShare2 size="25px" />
           <span className="hidden sm:inline">Share</span>
         </button>
@@ -41,12 +41,12 @@ export default function SharePostPage({ id }) {
             <label htmlFor="link" className="sr-only">
               Link
             </label>
-            <input id="link" defaultValue={shareUrl} readOnly />
+            <input id="link" defaultValue={shareUrl} readOnly aria-label="Shareable link" />
           </div>
         </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" aria-label="Close share dialog">
               Close
             </Button>
           </DialogClose>

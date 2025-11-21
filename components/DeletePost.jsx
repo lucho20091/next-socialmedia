@@ -51,6 +51,7 @@ export default function DeletePostPage({ id }) {
     hover:border-red-500/60 dark:hover:border-red-400/60 
     hover:text-red-500 dark:hover:text-red-300
   "
+        aria-label="Delete post"
       >
         <AiOutlineDelete size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
@@ -67,6 +68,7 @@ export default function DeletePostPage({ id }) {
             type="submit"
             variant="destructive"
             className="cursor-pointer"
+            aria-label="Confirm delete post"
           >
             Delete
           </Button>

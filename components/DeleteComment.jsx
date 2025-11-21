@@ -44,6 +44,7 @@ export default function DeleteCommentPage({ commentId }) {
     hover:border-red-500 dark:hover:border-red-400 
     hover:text-red-500 dark:hover:text-red-400
   "
+        aria-label="Delete comment"
       >
         <AiOutlineDelete size={16} className="sm:size-[18px] text-inherit" />
       </DialogTrigger>
@@ -61,6 +62,7 @@ export default function DeleteCommentPage({ commentId }) {
             type="submit"
             variant="destructive"
             className="cursor-pointer"
+            aria-label="Confirm delete comment"
           >
             Delete
           </Button>

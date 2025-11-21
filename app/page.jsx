@@ -44,7 +44,7 @@ export default async function Home() {
             <div className="flex items-start px-4 py-6 sm:py-8 gap-2">
               <Image
                 src={prismaUser.avatar || "/default-profile.jpg"}
-                alt="Profile"
+                alt={`${prismaUser.username} avatar`}
                 width={40}
                 height={40}
                 className="object-cover rounded-full border-2 border-gray-800 w-10 h-10 shadow-xl dark:shadow-gray-900"

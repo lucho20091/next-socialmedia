@@ -88,11 +88,15 @@ export default function SettingsForm({
           className="w-24 h-24 rounded-full object-cover border-2 border-blue-500 shadow"
         />
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
+          <label htmlFor="avatar-upload" className="block text-sm font-medium text-gray-700 dark:text-gray-400">
             Avatar
           </label>
           <div className="mt-2">
-            <label className="inline-flex items-center gap-2 px-4 py-2 border rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100 text-sm dark:bg-neutral-900 dark:text-gray-300">
+            <label
+              htmlFor="avatar-upload"
+              className="inline-flex items-center gap-2 px-4 py-2 border rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100 text-sm dark:bg-neutral-900 dark:text-gray-300"
+              aria-label="Choose avatar image"
+            >
               <svg
                 className="w-4 h-4"
                 viewBox="0 0 24 24"
@@ -114,6 +118,7 @@ export default function SettingsForm({
               </svg>
               <span>Choose image</span>
               <input
+                id="avatar-upload"
                 type="file"
                 accept="image/*"
                 className="hidden"
@@ -126,16 +131,18 @@ export default function SettingsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
+        <label htmlFor="username-input" className="block text-sm font-medium text-gray-700 dark:text-gray-400">
           Username
         </label>
         <input
+          id="username-input"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Your username"
           maxLength={20}
           className="mt-2 w-full rounded-md border px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-300"
+          aria-label="Username"
         />
       </div>
 
@@ -144,6 +151,7 @@ export default function SettingsForm({
           type="submit"
           disabled={isSaving}
           className="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 transition dark:text-gray-300 cursor-pointer"
+          aria-label={isSaving ? "Saving changes" : "Save changes"}
         >
           {isSaving ? "Saving..." : "Save changes"}
         </button>

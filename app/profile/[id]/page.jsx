@@ -97,6 +97,7 @@ export default async function page({ params }) {
     hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
     hover:text-indigo-500 dark:hover:text-indigo-300
   "
+                aria-label="Go to settings"
               >
                 <IoSettings size={20} className="text-inherit" />
               </Link>

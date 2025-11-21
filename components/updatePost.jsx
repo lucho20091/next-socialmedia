@@ -63,6 +63,7 @@ export default function updatePostPage({
     hover:scale-105 hover:shadow-lg 
     hover:border-indigo-500/60 dark:hover:border-indigo-400/60 
     hover:text-indigo-500 dark:hover:text-indigo-300"
+        aria-label="Edit post"
       >
         <BiEdit size={18} className="sm:size-[20px] text-inherit" />
       </DialogTrigger>
@@ -80,7 +81,7 @@ export default function updatePostPage({
                 src={imageUrl || "/default-profile.jpg"}
                 width={40}
                 height={40}
-                alt="Profile"
+                alt="Profile avatar"
                 className="rounded-full border-2 border-blue-500 shadow-xl w-10 h-10"
               />
             )}
@@ -97,15 +98,16 @@ export default function updatePostPage({
                 placeholder="What's happening?"
                 rows={4}
                 className="w-full resize-none bg-transparent text-gray-900 placeholder-gray-500 outline-none text-lg leading-relaxed dark:text-gray-300"
+                aria-label="Post content"
               />
             </div>
           </div>
           <DialogFooter>
             <div className="flex items-center justify-center mt-4 gap-4">
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" aria-label="Cancel editing post">Cancel</Button>
               </DialogClose>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" aria-label="Save changes to post">Save changes</Button>
             </div>
           </DialogFooter>
         </form>

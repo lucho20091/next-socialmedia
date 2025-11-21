@@ -34,7 +34,7 @@ export default function LikePost({ postId, currentLikes, userId }) {
   }
   return (
     <>
-      <button className="cursor-pointer" onClick={handleLike}>
+      <button className="cursor-pointer" onClick={handleLike} aria-label={userHasLiked ? "Dislike post" : "Like post"}>
         {userHasLiked ? (
           <BiSolidLike
             size="25px"
