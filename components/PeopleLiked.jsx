@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 
 export default function PeopleLiked({ userHasLiked, likes }) {
-  // likes = [{ avatar, email, id, username }]
+  
 
   return (
     <Dialog>

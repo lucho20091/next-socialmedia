@@ -11,9 +11,9 @@ export default function CommentPage({ postId }) {
     try {
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      console.log("Client-side IP fetched for comment:", ip); // Log IP on client-side
+      
 
-      const result = await createComment(content, postId, ip); // Pass IP to server action
+      const result = await createComment(content, postId, ip); 
       if (result.success) {
         setContent("");
         showToast("Comment Posted");

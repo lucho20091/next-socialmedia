@@ -18,7 +18,7 @@ export default function LogoutButton() {
 
   const handleLogout = async () => {
     await stackClientApp.signOut();
-    // optional redirect
+    
     window.location.href = "/";
   };
 

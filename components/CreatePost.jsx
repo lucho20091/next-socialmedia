@@ -52,10 +52,10 @@ export default function CreatePostPage({ isAdmin = false }) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // Fetch client IP
+      
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      console.log("Client-side IP fetched:", ip); // Log IP on client-side
+      
 
       let mediaUrl;
       if (selectedFile) {
@@ -82,7 +82,7 @@ export default function CreatePostPage({ isAdmin = false }) {
         const data = await response.json();
         mediaUrl = data.secure_url;
       }
-      const result = await createPost(content.trim(), mediaUrl, isHidden, ip); // Pass IP to server action
+      const result = await createPost(content.trim(), mediaUrl, isHidden, ip); 
 
       if (result.success) {
         setContent("");
@@ -91,7 +91,7 @@ export default function CreatePostPage({ isAdmin = false }) {
 
         showToast("Created Post");
       } else {
-        showToast(result.error || "Post Failed", "error"); // Display specific error if available
+        showToast(result.error || "Post Failed", "error"); 
       }
     } catch (e) {
       showToast("Post Failed", "error");

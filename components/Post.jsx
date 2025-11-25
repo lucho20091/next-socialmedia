@@ -1,8 +1,5 @@
 "use client";
-// Removed AOS imports and useEffect for AOS initialization
-// import { useEffect } from "react";
-// import AOS from "aos";
-// import "@/app/aos-custom.css";
+
 
 import Image from "next/image";
 import Link from "next/link";
@@ -27,16 +24,7 @@ export default function PostPage({
   homePage = false,
   index = 1,
 }) {
-  // Removed useEffect for AOS initialization
-  // useEffect(() => {
-  //   AOS.init({
-  //     duration: 800,
-  //     once: true,
-  //     easing: "ease-out-cubic",
-  //     mirror: false,
-  //     disable: () => window.innerWidth < 1300,
-  //   });
-  // }, []);
+  
   function formatDate(date) {
     const dateFns = formatDistanceToNow(date, { addSuffix: true });
     return dateFns.replace(/^about\s/, "");
@@ -50,21 +38,17 @@ export default function PostPage({
     return url;
   }
 
-  // Removed delay and duration calculations as they were for AOS
-  // const delay = index > 10 ? 1000 : index * 100;
-  // const duration = index < 3 ? 500 + index * 200 : 1100;
+  
+  
 
   return (
     <div
       key={post.id}
       className="border-y border-gray-200 dark:border-gray-800 px-4 py-6 hover:bg-gray-50 dark:hover:bg-[oklch(16.5%_0_0)] transition-colors"
-      // Removed data-aos attributes
-      // data-aos="zoom-in-left"
-      // data-aos-delay={delay}
-      // data-aos-duration={duration}
+      
       suppressHydrationWarning
     >
-      {/* post header */}
+      
       <div className="flex items-start space-x-3">
         <Link href={`/profile/${post.author.id}`} aria-label={`View ${post.author.username}'s profile`}>
           <Image
@@ -128,13 +112,13 @@ export default function PostPage({
             )}
         </div>
       </div>
-      {/* post content */}
+      
       <div className="sm:ml-13 my-3 sm:mt-0">
         <p className="text-gray-900 dark:text-gray-300 text-lg leading-tight">
           {post.content}
         </p>
       </div>
-      {/* post image */}
+      
       {post.mediaUrl &&
         !post.mediaUrl.endsWith(".mp4") &&
         !post.mediaUrl.endsWith(".webm") && (
@@ -150,7 +134,7 @@ export default function PostPage({
             />
           </div>
         )}
-      {/* post video */}
+      
       {post.mediaUrl &&
         (post.mediaUrl.endsWith(".mp4") || post.mediaUrl.endsWith(".webm")) && (
           <div className="sm:ml-13 mb-4 rounded-2xl bg-black relative">
@@ -165,7 +149,7 @@ export default function PostPage({
             <LockScreen />
           </div>
         )}
-      {/* post actions */}
+      
       <div className="grid grid-cols-[2fr_2fr_1fr] sm:grid-cols-3 sm:ml-13">
         <div className="flex items-center justify-start gap-2 sm:gap-4 ">
           <LikePost
@@ -193,7 +177,7 @@ export default function PostPage({
       </div>
       {displayComments && (
         <>
-          {/* comment section */}
+          
           <div className="sm:ml-13 mt-4">
             {homePage && post._count.comments > 2 && (
               <Link
@@ -215,7 +199,7 @@ export default function PostPage({
                 />
               ))}
           </div>
-          {/* comment form */}
+          
           {prismaUser && (
             <>
               <div className="pt-4">

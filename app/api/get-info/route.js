@@ -10,7 +10,7 @@ export async function GET(req) {
     const { country, continent } = await res.json();
     return NextResponse.json({ country, continent });
   } catch (e) {
-    console.log(e);
+    
     return NextResponse.json(
       { error: "something went wrong" },
       { status: 500 }

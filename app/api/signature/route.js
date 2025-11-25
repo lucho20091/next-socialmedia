@@ -12,7 +12,7 @@ export async function GET() {
 
   const paramsToSign = {
     timestamp,
-    folder: "uploads", // 👈 include folder here too
+    folder: "uploads", 
   };
 
   const signature = cloudinary.utils.api_sign_request(

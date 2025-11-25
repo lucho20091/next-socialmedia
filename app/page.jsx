@@ -9,16 +9,16 @@ export default async function Home() {
   const user = await stackServerApp.getUser();
 
   async function handleUserPrisma() {
-    // if no user return null
+    
     if (!user) return null;
     try {
-      // check if user exists in prisma
+      
       const existingUser = await prisma.user.findUnique({
         where: { email: user.primaryEmail },
       });
-      // if user exist then just return it
+      
       if (existingUser) return existingUser;
-      // else return the new user created
+      
       const newUser = await prisma.user.create({
         data: {
           email: user.primaryEmail,
@@ -29,7 +29,7 @@ export default async function Home() {
       sendMessage(newUser);
       return newUser;
     } catch (error) {
-      console.log(error);
+      
     }
   }
 

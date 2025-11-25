@@ -33,9 +33,9 @@ export default function UpdateCommentPage({
     try {
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      console.log("Client-side IP fetched for update comment:", ip); // Log IP on client-side
+      
 
-      const result = await updateComment(id, content.trim(), ip); // Pass IP to server action
+      const result = await updateComment(id, content.trim(), ip); 
       if (result.success) {
         showToast("Comment Updated");
         setOpen(false);

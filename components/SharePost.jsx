@@ -17,7 +17,7 @@ export default function SharePostPage({ id }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const baseUrl = window.location.origin; // e.g. http://localhost:3000 or https://smtestvercel.com
+      const baseUrl = window.location.origin; 
       setShareUrl(`${baseUrl}/post/${id}`);
     }
   }, [id]);

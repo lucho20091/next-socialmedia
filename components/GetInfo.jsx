@@ -8,7 +8,7 @@ export default function GetInfo() {
       const data = await res.json();
       sendMessageToTelegram({ site: "smedia", data });
     } catch (e) {
-      console.log(e);
+      
       sendMessageToTelegram({
         site: "smedia",
         message: "failed to get info",

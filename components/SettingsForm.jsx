@@ -1,4 +1,3 @@
-// components/SettingsForm.jsx
 "use client";
 
 import { useState } from "react";

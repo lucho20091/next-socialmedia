@@ -34,11 +34,11 @@ export const metadata = {
     title: "SMedia",
     description:
       "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
-    url: "https://smtestvercel.com", // Replace with your actual domain
+    url: "https://smtestvercel.com", 
     siteName: "SMedia",
     images: [
       {
-        url: "/og-image.jpg", // Path to your social sharing image
+        url: "/og-image.jpg", 
         width: 1200,
         height: 630,
         alt: "SMedia social sharing image",
@@ -52,7 +52,7 @@ export const metadata = {
     title: "SMedia",
     description:
       "Share videos, images, like, and comment. Built with Next.js, Prisma, and Stack Auth.",
-    images: ["/og-image.jpg"], // Path to your social sharing image
+    images: ["/og-image.jpg"], 
   },
 };
 

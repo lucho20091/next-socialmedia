@@ -27,7 +27,7 @@ export default function HidePostPage({ id, isHidden }) {
         );
         setOpen(false);
         if (pathname.startsWith("/post/")) {
-          console.log(pathname);
+          
           router.back();
         }
       } else {

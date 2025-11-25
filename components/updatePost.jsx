@@ -33,14 +33,14 @@ export default function updatePostPage({
     try {
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      console.log("Client-side IP fetched for update post:", ip); // Log IP on client-side
+      
 
-      const result = await updatePost(id, content.trim(), ip); // Pass IP to server action
+      const result = await updatePost(id, content.trim(), ip); 
       if (result.success) {
         showToast("Post Updated");
         setOpen(false);
       } else {
-        showToast(result.error || "Failed to Update Post", "error"); // Display specific error if available
+        showToast(result.error || "Failed to Update Post", "error"); 
       }
     } catch (e) {
       showToast("Failed to Update Post", "error");
