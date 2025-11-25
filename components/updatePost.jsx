@@ -31,12 +31,16 @@ export default function updatePostPage({
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const result = await updatePost(id, content.trim());
+      const ipRes = await fetch("/api/get-ip");
+      const ip = await ipRes.text();
+      console.log("Client-side IP fetched for update post:", ip); // Log IP on client-side
+
+      const result = await updatePost(id, content.trim(), ip); // Pass IP to server action
       if (result.success) {
         showToast("Post Updated");
         setOpen(false);
       } else {
-        showToast("Failed to Update Post", "error");
+        showToast(result.error || "Failed to Update Post", "error"); // Display specific error if available
       }
     } catch (e) {
       showToast("Failed to Update Post", "error");
