@@ -52,6 +52,10 @@ export default function CreatePostPage({ isAdmin = false }) {
     e.preventDefault();
     setIsLoading(true);
     try {
+      // Fetch client IP
+      const ipRes = await fetch("/api/get-ip");
+      const ip = await ipRes.text();
+
       let mediaUrl;
       if (selectedFile) {
         const sigRes = await fetch("/api/signature");
@@ -77,7 +81,7 @@ export default function CreatePostPage({ isAdmin = false }) {
         const data = await response.json();
         mediaUrl = data.secure_url;
       }
-      const result = await createPost(content.trim(), mediaUrl, isHidden);
+      const result = await createPost(content.trim(), mediaUrl, isHidden, ip); // Pass IP to server action
 
       if (result.success) {
         setContent("");
@@ -86,10 +90,10 @@ export default function CreatePostPage({ isAdmin = false }) {
 
         showToast("Created Post");
       } else {
-        showToast("Post Failed");
+        showToast(result.error || "Post Failed", "error"); // Display specific error if available
       }
     } catch (e) {
-      showToast("Post Failed");
+      showToast("Post Failed", "error");
     } finally {
       setIsLoading(false);
     }
