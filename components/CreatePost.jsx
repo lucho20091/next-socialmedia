@@ -52,10 +52,8 @@ export default function CreatePostPage({ isAdmin = false }) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      
 
       let mediaUrl;
       if (selectedFile) {
@@ -82,7 +80,7 @@ export default function CreatePostPage({ isAdmin = false }) {
         const data = await response.json();
         mediaUrl = data.secure_url;
       }
-      const result = await createPost(content.trim(), mediaUrl, isHidden, ip); 
+      const result = await createPost(content.trim(), mediaUrl, isHidden, ip);
 
       if (result.success) {
         setContent("");
@@ -91,7 +89,7 @@ export default function CreatePostPage({ isAdmin = false }) {
 
         showToast("Created Post");
       } else {
-        showToast(result.error || "Post Failed", "error"); 
+        showToast(result.error || "Post Failed", "error");
       }
     } catch (e) {
       showToast("Post Failed", "error");
@@ -119,7 +117,11 @@ export default function CreatePostPage({ isAdmin = false }) {
           <div className="flex items-center justify-between mt-3">
             <div className="flex items-center gap-2 sm:gap-4">
               <div className="flex items-center space-x-4">
-                <label htmlFor="media-upload" className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer" aria-label="Upload image or video">
+                <label
+                  htmlFor="media-upload"
+                  className="text-blue-500 hover:text-blue-600 transition-colors cursor-pointer"
+                  aria-label="Upload image or video"
+                >
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -145,7 +147,9 @@ export default function CreatePostPage({ isAdmin = false }) {
               </div>
               {isAdmin && (
                 <div className="flex items-center space-x-3">
-                  <label htmlFor="visibility-select" className="sr-only">Post visibility</label>
+                  <label htmlFor="visibility-select" className="sr-only">
+                    Post visibility
+                  </label>
                   <select
                     id="visibility-select"
                     value={isHidden ? "true" : "false"}
@@ -162,7 +166,7 @@ export default function CreatePostPage({ isAdmin = false }) {
             <button
               type="submit"
               disabled={!content.trim() || isLoading}
-              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600"
+              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600 cursor-pointer"
               aria-label={isLoading ? "Posting..." : "Post"}
             >
               {isLoading ? "Posting..." : "Post"}

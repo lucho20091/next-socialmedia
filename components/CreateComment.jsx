@@ -11,9 +11,8 @@ export default function CommentPage({ postId }) {
     try {
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
-      
 
-      const result = await createComment(content, postId, ip); 
+      const result = await createComment(content, postId, ip);
       if (result.success) {
         setContent("");
         showToast("Comment Posted");
@@ -41,7 +40,7 @@ export default function CommentPage({ postId }) {
       />
       <button
         disabled={!content.trim() || isLoading}
-        className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600"
+        className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-2 rounded-full text-sm transition-colors dark:disabled:bg-gray-400 dark:disabled:text-gray-600 cursor-pointer"
       >
         {isLoading ? "Replying..." : "Reply"}
       </button>

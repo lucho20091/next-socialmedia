@@ -77,11 +77,11 @@ export default async function Navbar() {
       cursor-pointer
       transition-all duration-300 
       bg-gray-100 dark:bg-neutral-900 
-      border-2 border-gray-400 dark:border-blue-800 
+    border border-gray-400 dark:border-neutral-700 
       shadow-md shadow-black/40 
       hover:scale-105 hover:shadow-lg 
-      hover:border-indigo-500/60 
-      dark:hover:border-blue-400
+    hover:border-indigo-500/60 
+    dark:hover:border-indigo-400/60 
       "
                 />
               </Link>
