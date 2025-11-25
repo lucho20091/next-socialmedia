@@ -55,6 +55,7 @@ export default function CreatePostPage({ isAdmin = false }) {
       // Fetch client IP
       const ipRes = await fetch("/api/get-ip");
       const ip = await ipRes.text();
+      console.log("Client-side IP fetched:", ip); // Log IP on client-side
 
       let mediaUrl;
       if (selectedFile) {
